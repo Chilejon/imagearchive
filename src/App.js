@@ -1,26 +1,123 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import ImageDetails from "./components/ImageDetails";
+import FullDetails from "./components/FullDetails";
+import Searchbox from "./components/Searchbox";
+import { Column, Row } from "simple-flexbox";
+import loading from "./images/smLoading.gif";
+import "./css/imagearchive.css";
+
+const getAreas = "http://interactive.stockport.gov.uk/siarestapi/v1/Getareas";
+
+const API3 =
+  "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByID?id=3";
+const GetPhotosSearchTitle =
+  "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByTitle/?term=";
+const GetPhotoByID =
+  "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByID?id=";
+const GetPhotosSearchAll =
+  "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByTerm?term=";
+const GetPhotosByTermAndArea =
+  "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByTermArea/?term=";
+const GetPhotosByClassNo =
+  "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByClassNo/?id=";
 
 class App extends Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      Images: [],
+      areas: [],
+      DisplayMissCount: 0,
+      DisplayCount: 5,
+      imageDetails: {
+        title: "",
+        description: "",
+        area: "",
+        classno: "",
+        dateofimage: "",
+        AccessionNo: ""
+      },
+      searchTerm: "",
+      searchWhat: [
+        { id: "title", value: "Title" },
+        { id: "all", value: "All" },
+        { id: "allarea", value: "All/Area" }
+      ],
+      isLoading: false
+    };
+    this.search = this.search.bind(this);
+  }
+
+  search(searchTerm, area, paginationSize) {
+    //alert(searchTerm + " " + area + " " + paginationSize);
+    this.setState({
+      Images: [],
+      isLoading: true,
+      DisplayCount: paginationSize.value
+    });
+    var apiLink = "";
+    //alert("api" + apiLink);
+    apiLink = GetPhotosSearchTitle + searchTerm;
+    // switch ("title") {
+    //   case "all":
+    //     apiLink = GetPhotosSearchAll + this.title.value;
+    //     break;
+    //   case "title":
+
+    //     break;
+    //   case "allarea":
+    //     apiLink =
+    //       GetPhotosByTermAndArea +
+    //       this.title.value +
+    //       "&area=" +
+    //       this.Areas.value;
+    //     break;
+    // }
+    //alert(apiLink);
+
+    fetch(apiLink)
+      .then(response => response.json())
+      .then(json => {
+        alert(json);
+        this.setState({
+          Images: json
+        });
+      });
+
+    // fetch(apiLink).then(response =>
+    //   response.json().then(console.log(response))
+    // );
+    //      .then(console.log(response));
+    // .then(json => {
+    //   this.setState({
+    //     Images: json,
+    //     isLoading: false
+    //   });
+
+    //alert(response);
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <section>
+        <div class="row">
+          <div class="search-column">
+            <Searchbox
+              searchWhat={this.state.searchWhat}
+              //areas={this.state.areas}
+              search={this.search}
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="column">
+            <div class="green-column">Search Results</div>
+          </div>
+          <div class="column">
+            <div class="orange-column">Full Picture</div>
+          </div>
+        </div>
+      </section>
     );
   }
 }
