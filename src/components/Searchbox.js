@@ -68,7 +68,8 @@ class Searchbox extends Component {
             //</button>
             <button
               className="showMoreButton"
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault()
                 this.props.search(
                   this.title.value,
                   this.area.value,
