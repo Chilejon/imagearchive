@@ -78,7 +78,7 @@ class App extends Component {
     fetch(apiLink)
       .then(response => response.json())
       .then(json => {
-        alert(json);
+        //alert(json);
         this.setState({
           Images: json
         });
@@ -98,6 +98,36 @@ class App extends Component {
   }
 
   render() {
+    if (this.state.Images !== null) {
+      var imagesDisplayedCount = 1;
+      var imagesInTotal = 0;
+      var images = this.state.Images.map(Images => {
+        imagesInTotal = imagesInTotal + 1;
+        // if (imagesInTotal > this.state.DisplayMissCount) {
+        //   if (imagesDisplayedCount <= this.state.DisplayCount) {
+        //     imagesDisplayedCount = imagesDisplayedCount + 1;
+            
+            return (
+              <ImageDetails
+                title={Images.title}
+                AccessionNo={Images.AccessionNo.trim()}
+                description={Images.description.trim()}
+                area={Images.area}
+                dateofimage={Images.dateofimage.trim()}
+                classno={Images.classno.trim()}
+                getImage={this.getImage}
+                showImage={this.showImage}
+              />
+            );
+//          }
+//        }
+      });
+    } else {
+    }
+    {
+      console.log(this.state.isLoading);
+    }
+
     return (
       <section>
         <div class="row">
@@ -111,7 +141,14 @@ class App extends Component {
         </div>
         <div class="row">
           <div class="column">
-            <div class="green-column">Search Results</div>
+            <div class="green-column">
+            {images}
+      
+            
+            
+            
+            
+            </div>
           </div>
           <div class="column">
             <div class="orange-column">Full Picture</div>
