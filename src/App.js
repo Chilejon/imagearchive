@@ -106,21 +106,21 @@ class App extends Component {
         // if (imagesInTotal > this.state.DisplayMissCount) {
         //   if (imagesDisplayedCount <= this.state.DisplayCount) {
         //     imagesDisplayedCount = imagesDisplayedCount + 1;
-            
-            return (
-              <ImageDetails
-                title={Images.title}
-                AccessionNo={Images.AccessionNo.trim()}
-                description={Images.description.trim()}
-                area={Images.area}
-                dateofimage={Images.dateofimage.trim()}
-                classno={Images.classno.trim()}
-                getImage={this.getImage}
-                showImage={this.showImage}
-              />
-            );
-//          }
-//        }
+
+        return (
+          <ImageDetails
+            title={Images.title}
+            AccessionNo={Images.AccessionNo.trim()}
+            description={Images.description.trim()}
+            area={Images.area}
+            dateofimage={Images.dateofimage.trim()}
+            classno={Images.classno.trim()}
+            getImage={this.getImage}
+            showImage={this.showImage}
+          />
+        );
+        //          }
+        //        }
       });
     } else {
     }
@@ -129,8 +129,8 @@ class App extends Component {
     }
 
     return (
-      <section>
-        <div class="row">
+      <div className="wrapper">
+        <div className="box a">
           <div class="search-column">
             <Searchbox
               searchWhat={this.state.searchWhat}
@@ -139,22 +139,9 @@ class App extends Component {
             />
           </div>
         </div>
-        <div class="row">
-          <div class="column">
-            <div class="green-column">
-            {images}
-      
-            
-            
-            
-            
-            </div>
-          </div>
-          <div class="column">
-            <div class="orange-column">Full Picture</div>
-          </div>
-        </div>
-      </section>
+        <div className="box b">{images}</div>
+        <div className="box c">Full Picture</div>
+      </div>
     );
   }
 }

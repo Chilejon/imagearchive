@@ -1,3 +1,42 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 400px;
+  grid-template-areas:
+    "a .......  ......."
+    "b c .......";
+  grid-gap: 10px;
+  background-color: #fff;
+  color: #444;
+}
+
+.box {
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 100%;
+  height: 90%;
+}
+.a {
+  background-color: blue;
+}
+
+.b {
+  background-color: orangered;
+}
+
+.c {
+  background-color: green;
+}
+
+.d {
+  background-color: red;
+}
+
+.e {
+  background-color: black;
+}
+
 .App {
   text-align: center;
 }
