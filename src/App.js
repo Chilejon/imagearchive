@@ -48,6 +48,8 @@ class App extends Component {
     this.search = this.search.bind(this);
     this.showImage = this.showImage.bind(this);
     this.showSimilarImages = this.showSimilarImages.bind(this);
+    this.goBack = this.goBack.bind(this);
+    this.goForward = this.goForward.bind(this);
   }
 
   search(searchTerm, area, paginationSize, searchWhat) {
@@ -138,12 +140,32 @@ class App extends Component {
       });
   }
 
+  goBack() {
+    var tempValue = this.state.DisplayMissCount;
+    var tempValue2 = this.state.DisplayCount;
+    this.setState({
+      DisplayMissCount: tempValue - tempValue2
+    });
+  }
+
+  goForward() {
+    var tempValue = this.state.DisplayMissCount;
+    var tempValue2 = this.state.DisplayCount;
+    this.setState({
+      DisplayMissCount: tempValue + tempValue2
+    });
+  }
+
   render() {
     if (this.state.Images !== null) {
       var imagesDisplayedCount = 1;
       var imagesInTotal = 0;
+      alert(this.state.DisplayMissCount)
       var images = this.state.Images.map(Images => {
         imagesInTotal = imagesInTotal + 1;
+        if (imagesInTotal > this.state.DisplayMissCount) {
+          if (imagesDisplayedCount <= this.state.DisplayCount) {
+            imagesDisplayedCount = imagesDisplayedCount + 1;
         return (
           <ImageDetails
             title={Images.title}
@@ -154,8 +176,10 @@ class App extends Component {
             classno={Images.classno.trim()}
             getImage={this.getImage}
             showImage={this.showImage}
-          />
-        );
+            />
+            );
+          }
+        }
       });
     } else {
     }

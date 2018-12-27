@@ -76,7 +76,7 @@ class Searchbox extends Component {
           </select>
 
           {this.props.isLoading ? (
-            <img src={loading} alt={"loading"} width="20" height="20" />
+            <span className="loading"><img src={loading} alt={"loading"} width="20" height="20" /></span>
           ) : (
             <button
               className="showMoreButton"
