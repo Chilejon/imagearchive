@@ -19,16 +19,30 @@ class FullDetails extends Component {
     console.log(this.props);
     return (
       <section className="bigImageBorder">
+        <h2>Full details</h2>
         <p>{this.props.title}</p>
         <p>{this.props.description}</p>
         <p>
-          {this.props.AccessionNo} : {this.props.area} : {this.props.classno}
+          AccessionNo: {this.props.AccessionNo}
+          </p>
+          <p>  Area: {this.props.area} </p>
+          <p>Class: {this.props.classno}
         </p>
-        <p>{this.props.dateofimage}</p>
+        <p>Date: {this.props.dateofimage}</p>
         <img
           src={imgSrc + this.props.AccessionNo + ".jpg"}
           text={this.props.title}
         />
+
+        <button
+          className="showSimilarImages"
+          onClick={() => {
+            this.props.showSimilarImages(
+              this.props.classno
+            );
+          }}
+        >Similar images</button>
+
       </section>
     );
   }

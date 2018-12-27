@@ -8,8 +8,10 @@ class Searchbox extends Component {
     super(props, context);
     this.state = {
       isLoading: "",
-      areas: []
+      areas: [],
+      input: ''
     };
+    this.onChange = this.onChange.bind(this)
   }
 
   componentDidMount() {
@@ -25,6 +27,11 @@ class Searchbox extends Component {
     }
   }
 
+  onChange(event)
+  {
+        this.setState({input: event.target.value})
+  }
+
   render() {
     console.log(this.state.areas);
     return (
@@ -35,6 +42,8 @@ class Searchbox extends Component {
             ref={title => (this.title = title)}
             required
             size="16"
+            value={this.state.input}
+            onChange={this.onChange}
           />
           <select id="searchWhat" ref={input => (this.searchWhat = input)}>
             {this.props.searchWhat.map(dd => (
@@ -44,6 +53,7 @@ class Searchbox extends Component {
             ))}
           </select>
           <select id="Areas" ref={input => (this.area = input)}>
+          <option value="">All</option>
             {this.state.areas.map(dd => (
               <option key={dd.ID} value={dd.ID}>
                 {dd.Area1}
@@ -65,16 +75,14 @@ class Searchbox extends Component {
             </option>
           </select>
 
-          {this.state.isLoading ? (
+          {this.props.isLoading ? (
             <img src={loading} alt={"loading"} width="20" height="20" />
           ) : (
-            //<button className="showMoreButton" type="submit">
-            //  search
-            //</button>
             <button
               className="showMoreButton"
-              onClick={e => {
-                e.preventDefault();
+              onClick={(e) => {
+                e.preventDefault()
+                this.setState({input: ''})
                 this.props.search(
                   this.title.value,
                   this.area.value,

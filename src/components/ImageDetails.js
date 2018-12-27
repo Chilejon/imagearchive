@@ -32,12 +32,12 @@ class ImageDetails extends Component {
   }
 
   render() {
-    var imgSrcConfirmed = imgSrc + this.state.AccessionNo + ".jpg";
+    var imgSrcConfirmed = imgSrc + this.props.AccessionNo + ".jpg";
 
     imgSrcConfirmed = this.checkImageExists(
-      imgSrc + this.state.AccessionNo + ".jpg"
+      imgSrc + this.props.AccessionNo + ".jpg"
     );
-
+    
     return (
       <section className="imageBorder">
         <p>{this.state.title}</p>

@@ -18,8 +18,8 @@ const GetPhotosSearchAll =
   "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByTerm?term=";
 const GetPhotosByTermAndArea =
   "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByTermArea/?term=";
-const GetPhotosByClassNo =
-  "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByClassNo/?id=";
+const GetPhotosByClassNo = "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByClassNo/?id=";
+
 
 class App extends Component {
   constructor(props, context) {
@@ -47,6 +47,7 @@ class App extends Component {
     };
     this.search = this.search.bind(this);
     this.showImage = this.showImage.bind(this);
+    this.showSimilarImages = this.showSimilarImages.bind(this);
   }
 
   search(searchTerm, area, paginationSize, searchWhat) {
@@ -54,7 +55,16 @@ class App extends Component {
     this.setState({
       Images: [],
       isLoading: true,
-      DisplayCount: paginationSize.value
+      DisplayCount: paginationSize.value,
+      searchTerm: '',
+      imageDetails: {
+        title: "",
+        description: "",
+        area: "",
+        classno: "",
+        dateofimage: "",
+        AccessionNo: ""
+      }
     });
     var apiLink = "";
     //alert("api" + apiLink);
@@ -77,7 +87,9 @@ class App extends Component {
       .then(json => {
         //alert(json);
         this.setState({
-          Images: json
+          Images: json,
+          searchTerm: searchTerm,
+          isLoading: false
         });
       });
   }
@@ -94,6 +106,36 @@ class App extends Component {
       }
     });
     window.scrollTo(0, 0);
+  }
+
+  showSimilarImages(classno) {
+    this.setState({
+      Images: [],
+      isLoading: true,
+      DisplayCount: 10,
+      imageDetails: {
+        title: "",
+        description: "",
+        area: "",
+        classno: "",
+        dateofimage: "",
+        AccessionNo: ""
+      },
+      searchTerm: ''
+    });
+    var apiLink = "";
+    apiLink = GetPhotosByClassNo + classno;
+    //alert(apiLink)
+    fetch(apiLink)
+      .then(response => response.json())
+      .then(json => {
+        //alert(json);
+        this.setState({
+          Images: json,
+          searchTerm: classno,
+          isLoading:false
+        });
+      });
   }
 
   render() {
@@ -124,9 +166,17 @@ class App extends Component {
     return (
       <div className="wrapper">
         <div class="box header">
-          <Searchbox searchWhat={this.state.searchWhat} search={this.search} />
+          <Searchbox searchWhat={this.state.searchWhat} search={this.search} isLoading={this.state.isLoading} />
         </div>
-        <div class="box content">Images {images}</div>
+        <div class="box content">
+        {this.state.Images.length !== 0 && (
+        <div><h2>Search results</h2>
+        <h3>Found {this.state.Images.length} images</h3>
+        <h3>{this.state.searchTerm}</h3>
+        </div>
+        )}
+         {images}
+         </div>
         <div class="box content2">
           {this.state.imageDetails.title !== "" && (
             <FullDetails
@@ -136,6 +186,7 @@ class App extends Component {
               AccessionNo={this.state.imageDetails.AccessionNo.trim()}
               classno={this.state.imageDetails.classno}
               dateofimage={this.state.imageDetails.dateofimage}
+              showSimilarImages={this.showSimilarImages}
             />
           )}
         </div>
