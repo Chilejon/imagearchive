@@ -30,14 +30,19 @@ class Searchbox extends Component {
     return (
       this.state.areas.length > 0 && (
         <form onSubmit={this.searchTitle}>
-          <p>Search </p>
-          <label>Title:</label>
           <input
             id="title"
             ref={title => (this.title = title)}
             required
             size="16"
           />
+          <select id="searchWhat" ref={input => (this.searchWhat = input)}>
+            {this.props.searchWhat.map(dd => (
+              <option key={dd.id} value={dd.id}>
+                {dd.value}
+              </option>
+            ))}
+          </select>
           <select id="Areas" ref={input => (this.area = input)}>
             {this.state.areas.map(dd => (
               <option key={dd.ID} value={dd.ID}>
@@ -68,16 +73,17 @@ class Searchbox extends Component {
             //</button>
             <button
               className="showMoreButton"
-              onClick={(e) => {
-                e.preventDefault()
+              onClick={e => {
+                e.preventDefault();
                 this.props.search(
                   this.title.value,
                   this.area.value,
-                  this.PaginationSize.value
+                  this.PaginationSize.value,
+                  this.searchWhat.value
                 );
               }}
             >
-              Show more
+              Search
             </button>
           )}
         </form>

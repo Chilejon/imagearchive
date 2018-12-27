@@ -46,9 +46,10 @@ class App extends Component {
       isLoading: false
     };
     this.search = this.search.bind(this);
+    this.showImage = this.showImage.bind(this);
   }
 
-  search(searchTerm, area, paginationSize) {
+  search(searchTerm, area, paginationSize, searchWhat) {
     //alert(searchTerm + " " + area + " " + paginationSize);
     this.setState({
       Images: [],
@@ -58,23 +59,19 @@ class App extends Component {
     var apiLink = "";
     //alert("api" + apiLink);
     apiLink = GetPhotosSearchTitle + searchTerm;
-    // switch ("title") {
-    //   case "all":
-    //     apiLink = GetPhotosSearchAll + this.title.value;
-    //     break;
-    //   case "title":
-
-    //     break;
-    //   case "allarea":
-    //     apiLink =
-    //       GetPhotosByTermAndArea +
-    //       this.title.value +
-    //       "&area=" +
-    //       this.Areas.value;
-    //     break;
-    // }
+    var apiLink = "";
+    switch (searchWhat) {
+      case "all":
+        apiLink = GetPhotosSearchAll + searchTerm;
+        break;
+      case "title":
+        apiLink = GetPhotosSearchTitle + searchTerm;
+        break;
+      case "allarea":
+        apiLink = GetPhotosByTermAndArea + searchTerm + "&area=" + area;
+        break;
+    }
     //alert(apiLink);
-
     fetch(apiLink)
       .then(response => response.json())
       .then(json => {
@@ -83,18 +80,20 @@ class App extends Component {
           Images: json
         });
       });
+  }
 
-    // fetch(apiLink).then(response =>
-    //   response.json().then(console.log(response))
-    // );
-    //      .then(console.log(response));
-    // .then(json => {
-    //   this.setState({
-    //     Images: json,
-    //     isLoading: false
-    //   });
-
-    //alert(response);
+  showImage(AccessionNo, title, description, area, dateofimage, classno) {
+    this.setState({
+      imageDetails: {
+        AccessionNo: AccessionNo,
+        title: title,
+        description: description,
+        area: area,
+        classno: classno,
+        dateofimage: dateofimage
+      }
+    });
+    window.scrollTo(0, 0);
   }
 
   render() {
@@ -103,10 +102,6 @@ class App extends Component {
       var imagesInTotal = 0;
       var images = this.state.Images.map(Images => {
         imagesInTotal = imagesInTotal + 1;
-        // if (imagesInTotal > this.state.DisplayMissCount) {
-        //   if (imagesDisplayedCount <= this.state.DisplayCount) {
-        //     imagesDisplayedCount = imagesDisplayedCount + 1;
-
         return (
           <ImageDetails
             title={Images.title}
@@ -119,8 +114,6 @@ class App extends Component {
             showImage={this.showImage}
           />
         );
-        //          }
-        //        }
       });
     } else {
     }
@@ -130,17 +123,23 @@ class App extends Component {
 
     return (
       <div className="wrapper">
-        <div className="box a">
-          <div class="search-column">
-            <Searchbox
-              searchWhat={this.state.searchWhat}
-              //areas={this.state.areas}
-              search={this.search}
-            />
-          </div>
+        <div class="box header">
+          <Searchbox searchWhat={this.state.searchWhat} search={this.search} />
         </div>
-        <div className="box b">{images}</div>
-        <div className="box c">Full Picture</div>
+        <div class="box content">Images {images}</div>
+        <div class="box content2">
+          {this.state.imageDetails.title !== "" && (
+            <FullDetails
+              title={this.state.imageDetails.title}
+              description={this.state.imageDetails.description}
+              area={this.state.imageDetails.area}
+              AccessionNo={this.state.imageDetails.AccessionNo.trim()}
+              classno={this.state.imageDetails.classno}
+              dateofimage={this.state.imageDetails.dateofimage}
+            />
+          )}
+        </div>
+        <div class="box footer">Albums</div>
       </div>
     );
   }

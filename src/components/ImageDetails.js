@@ -40,7 +40,7 @@ class ImageDetails extends Component {
 
     return (
       <section className="imageBorder">
-        <h3>{this.state.title}</h3>
+        <p>{this.state.title}</p>
 
         <img src={imgSrcConfirmed} text={this.state.title} width="100" />
         <button

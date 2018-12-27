@@ -19,7 +19,7 @@ class FullDetails extends Component {
     console.log(this.props);
     return (
       <section className="bigImageBorder">
-        <h2>{this.props.title}</h2>
+        <p>{this.props.title}</p>
         <p>{this.props.description}</p>
         <p>
           {this.props.AccessionNo} : {this.props.area} : {this.props.classno}
