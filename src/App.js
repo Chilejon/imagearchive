@@ -94,6 +94,8 @@ class App extends Component {
           isLoading: false
         });
       });
+
+      //console.log("here " + apiLink)
   }
 
   showImage(AccessionNo, title, description, area, dateofimage, classno) {
@@ -158,41 +160,43 @@ class App extends Component {
 
   render() {
     if (this.state.Images !== null) {
-      var imagesDisplayedCount = 1;
-      var imagesInTotal = 0;
-      alert(this.state.DisplayMissCount)
+      //var imagesDisplayedCount = 1;
+      //var imagesInTotal = 0;
+      //alert(this.state.DisplayMissCount )
+      //imagesInTotal = imagesInTotal + 1;
       var images = this.state.Images.map(Images => {
-        imagesInTotal = imagesInTotal + 1;
-        if (imagesInTotal > this.state.DisplayMissCount) {
-          if (imagesDisplayedCount <= this.state.DisplayCount) {
-            imagesDisplayedCount = imagesDisplayedCount + 1;
-        return (
-          <ImageDetails
-            title={Images.title}
-            AccessionNo={Images.AccessionNo.trim()}
-            description={Images.description.trim()}
-            area={Images.area}
-            dateofimage={Images.dateofimage.trim()}
-            classno={Images.classno.trim()}
-            getImage={this.getImage}
-            showImage={this.showImage}
-            />
+    //    if (imagesInTotal > this.state.DisplayMissCount) {
+    //      if (imagesDisplayedCount <= this.state.DisplayCount) {
+    //        imagesDisplayedCount = imagesDisplayedCount + 1;
+            return (
+              <ImageDetails
+                title={Images.title}
+                AccessionNo={Images.AccessionNo.trim()}
+                description={Images.description.trim()}
+                area={Images.area}
+                dateofimage={Images.dateofimage.trim()}
+                classno={Images.classno.trim()}
+                getImage={this.getImage}
+                showImage={this.showImage}
+              />
             );
           }
-        }
-      });
-    } else {
+      )}
+      //}
+     else {
     }
     {
-      console.log(this.state.isLoading);
+    //  console.log(this.state.isLoading);
     }
+
+    
 
     return (
       <div className="wrapper">
-        <div class="box header">
+        <div className="box header">
           <Searchbox searchWhat={this.state.searchWhat} search={this.search} isLoading={this.state.isLoading} />
         </div>
-        <div class="box content">
+        <div className="box content">
         {this.state.Images.length !== 0 && (
         <div><h2>Search results</h2>
         <h3>Found {this.state.Images.length} images</h3>
@@ -201,7 +205,7 @@ class App extends Component {
         )}
          {images}
          </div>
-        <div class="box content2">
+        <div className="box content2">
           {this.state.imageDetails.title !== "" && (
             <FullDetails
               title={this.state.imageDetails.title}

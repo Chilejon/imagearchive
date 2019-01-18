@@ -19,7 +19,7 @@ class Searchbox extends Component {
       fetch(getAreas)
         .then(response => response.json())
         .then(json => {
-          console.log(json);
+          //console.log(json);
           this.setState({
             areas: json
           });
@@ -33,7 +33,7 @@ class Searchbox extends Component {
   }
 
   render() {
-    console.log(this.state.areas);
+    //console.log(this.state.areas);
     return (
       this.state.areas.length > 0 && (
         <form onSubmit={this.searchTitle}>
