@@ -18,7 +18,14 @@ class FullDetails extends Component {
   render() {
     console.log(this.props);
     return (
-      <section className="bigImageBorder">
+       <section className="box bigImage">
+       <section className="imagePicture">
+        <img
+          src={imgSrc + this.props.AccessionNo + ".jpg"}
+          text={this.props.title}
+        />
+        </section>
+        <section className="imageText">
         <h2>Full details</h2>
         <p>{this.props.title}</p>
         <p>{this.props.description}</p>
@@ -29,10 +36,6 @@ class FullDetails extends Component {
           <p>Class: {this.props.classno}
         </p>
         <p>Date: {this.props.dateofimage}</p>
-        <img
-          src={imgSrc + this.props.AccessionNo + ".jpg"}
-          text={this.props.title}
-        />
 
         <button
           className="showSimilarImages"
@@ -42,8 +45,8 @@ class FullDetails extends Component {
             );
           }}
         >Similar images</button>
-
-      </section>
+        </section>
+</section>
     );
   }
 }

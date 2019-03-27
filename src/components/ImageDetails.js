@@ -34,17 +34,17 @@ class ImageDetails extends Component {
   render() {
     var imgSrcConfirmed = imgSrc + this.props.AccessionNo + ".jpg";
 
-    imgSrcConfirmed = this.checkImageExists(
-      imgSrc + this.props.AccessionNo + ".jpg"
-    );
+    // imgSrcConfirmed = this.checkImageExists(
+    //   imgSrc + this.props.AccessionNo + ".jpg"
+    // );
     
     return (
-      <section className="imageBorder">
-        <p>{this.state.title}</p>
-        
+      <section className="results">
+      <div className="individualResult">
+       
         <img src={imgSrcConfirmed} text={this.state.title} width="100" />
         <button
-          className="showMoreButton"
+          className="Button"
           onClick={() => {
             this.props.showImage(
               this.state.AccessionNo,
@@ -58,6 +58,8 @@ class ImageDetails extends Component {
         >
           Show more
         </button>
+        <p>{this.state.title}</p>
+        </div>
       </section>
     );
   }
