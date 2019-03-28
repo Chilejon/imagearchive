@@ -279,7 +279,7 @@ class App extends Component {
       }],
       areas: [],
       DisplayMissCount: 0,
-      DisplayCount: 5,
+      DisplayCount: 8,
       imageDetails: {
         title: "",
         description: "",
@@ -399,6 +399,7 @@ class App extends Component {
     this.setState({
       DisplayMissCount: tempValue - tempValue2
     });
+    alert("sdsdsd");
   }
 
   goForward() {
@@ -415,7 +416,9 @@ class App extends Component {
       //var imagesInTotal = 0;
       //alert(this.state.DisplayMissCount )
       //imagesInTotal = imagesInTotal + 1;
-      var images = this.state.Images.slice(0, 8).map(Images => {
+      console.log(this.state.DisplayMissCount)
+      var images = this.state.Images.slice(this.state.DisplayMissCount, this.state.DisplayCount).map(Images => {
+        console.log(images)
         //    if (imagesInTotal > this.state.DisplayMissCount) {
         //      if (imagesDisplayedCount <= this.state.DisplayCount) {
         //        imagesDisplayedCount = imagesDisplayedCount + 1;
@@ -454,7 +457,16 @@ class App extends Component {
             </section>
 
             <section className="box results">
-              &lt; {images} &gt;
+               <button
+               className="Button"
+               onClick={() => {
+                 this.goForward();
+               }}
+             >
+               &gt;
+             </button>
+              
+               {images} &gt;
         </section>
           </div>
         )}
