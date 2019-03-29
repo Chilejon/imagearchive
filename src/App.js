@@ -5,6 +5,7 @@ import Searchbox from "./components/Searchbox";
 //import { Column, Row } from "simple-flexbox";
 //import loading from "./images/smLoading.gif";
 import "./css/imagearchive.css";
+import Results from "./components/Results";
 
 const getAreas = "http://interactive.stockport.gov.uk/siarestapi/v1/Getareas";
 
@@ -308,7 +309,7 @@ class App extends Component {
     this.setState({
       Images: [],
       isLoading: true,
-      DisplayCount: paginationSize.value,
+      //DisplayCount: paginationSize.value,
       searchTerm: '',
       imageDetails: {
         title: "",
@@ -360,7 +361,7 @@ class App extends Component {
         dateofimage: dateofimage
       }
     });
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   }
 
   showSimilarImages(classno) {
@@ -405,44 +406,49 @@ class App extends Component {
   goForward() {
     var tempValue = this.state.DisplayMissCount;
     var tempValue2 = this.state.DisplayCount;
+    var tempValue3 = this.state.Images
     this.setState({
-      DisplayMissCount: tempValue + tempValue2
+      DisplayMissCount: 8,
     });
+//    this.forceUpdate();
   }
 
   render() {
-    if (this.state.Images !== null) {
-      //var imagesDisplayedCount = 1;
-      //var imagesInTotal = 0;
-      //alert(this.state.DisplayMissCount )
-      //imagesInTotal = imagesInTotal + 1;
-      console.log(this.state.DisplayMissCount)
-      var images = this.state.Images.slice(this.state.DisplayMissCount, this.state.DisplayCount).map(Images => {
-        console.log(images)
-        //    if (imagesInTotal > this.state.DisplayMissCount) {
-        //      if (imagesDisplayedCount <= this.state.DisplayCount) {
-        //        imagesDisplayedCount = imagesDisplayedCount + 1;
-        return (
-          <ImageDetails
-            title={Images.title}
-            AccessionNo={Images.AccessionNo.trim()}
-            description={Images.description.trim()}
-            area={Images.area}
-            dateofimage={Images.dateofimage.trim()}
-            classno={Images.classno.trim()}
-            getImage={this.getImage}
-            showImage={this.showImage}
-          />
-        );
-      }
-      )
-    }
+    // var images
+    // if (this.state.Images !== null) {
+    //   console.log("weeeee")
+    //   console.log(images)
+    //   //var imagesDisplayedCount = 1;
+    //   //var imagesInTotal = 0;
+    //   //alert(this.state.DisplayMissCount )
+    //   //imagesInTotal = imagesInTotal + 1;
+    //   //console.log(this.state.DisplayMissCount)
+    //    images = this.state.Images.slice(this.state.DisplayMissCount, this.state.DisplayCount).map(Images => {
+    //     console.log(images)
+    //     //    if (imagesInTotal > this.state.DisplayMissCount) {
+    //     //      if (imagesDisplayedCount <= this.state.DisplayCount) {
+    //     //        imagesDisplayedCount = imagesDisplayedCount + 1;
+    //     return (
+    //       <ImageDetails
+    //         title={Images.title}
+    //         AccessionNo={Images.AccessionNo.trim()}
+    //         description={Images.description.trim()}
+    //         area={Images.area}
+    //         dateofimage={Images.dateofimage.trim()}
+    //         classno={Images.classno.trim()}
+    //         getImage={this.getImage}
+    //         showImage={this.showImage}
+    //       />
+    //     );
+    //   }
+    //   )
+    // }
     //}
-    else {
-    }
-    {
-      //  console.log(this.state.isLoading);
-    }
+    // else {
+    // }
+    // {
+    //  console.log(this.state.isLoading);
+
 
     return (
       <div className="wrapper">
@@ -455,21 +461,10 @@ class App extends Component {
               <p>Found {this.state.Images.length} images</p>
               <p>looked for '{this.state.searchTerm}'</p>
             </section>
-
-            <section className="box results">
-               <button
-               className="Button"
-               onClick={() => {
-                 this.goForward();
-               }}
-             >
-               &gt;
-             </button>
-              
-               {images} &gt;
-        </section>
+            <Results images={this.state.Images} DisplayMissCount={this.state.DisplayMissCount} goForward={this.goForward} />
           </div>
         )}
+
         {this.state.imageDetails.title !== "" && (
           <FullDetails
             title={this.state.imageDetails.title}
@@ -480,11 +475,12 @@ class App extends Component {
             dateofimage={this.state.imageDetails.dateofimage}
             showSimilarImages={this.showSimilarImages}
           />
-        )}
+        )
+        }
 
         <section class="box album">Albums</section>
       </div>
-    );
+    )
   }
 }
 
