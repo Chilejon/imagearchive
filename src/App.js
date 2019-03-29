@@ -280,7 +280,7 @@ class App extends Component {
       }],
       areas: [],
       DisplayMissCount: 0,
-      DisplayCount: 8,
+      DisplayCount: 4,
       imageDetails: {
         title: "",
         description: "",
@@ -298,7 +298,7 @@ class App extends Component {
       isLoading: false
     };
     this.search = this.search.bind(this);
-    this.showImage = this.showImage.bind(this);
+    
     this.showSimilarImages = this.showSimilarImages.bind(this);
     this.goBack = this.goBack.bind(this);
     this.goForward = this.goForward.bind(this);
@@ -350,19 +350,7 @@ class App extends Component {
     //console.log("here " + apiLink)
   }
 
-  showImage(AccessionNo, title, description, area, dateofimage, classno) {
-    this.setState({
-      imageDetails: {
-        AccessionNo: AccessionNo,
-        title: title,
-        description: description,
-        area: area,
-        classno: classno,
-        dateofimage: dateofimage
-      }
-    });
-    // window.scrollTo(0, 0);
-  }
+  
 
   showSimilarImages(classno) {
     this.setState({
@@ -405,10 +393,12 @@ class App extends Component {
 
   goForward() {
     var tempValue = this.state.DisplayMissCount;
+
     var tempValue2 = this.state.DisplayCount;
     var tempValue3 = this.state.Images
     this.setState({
-      DisplayMissCount: 8,
+      DisplayMissCount: tempValue + 4,
+      DisplayMissCountEnd: tempValue + 4 + 4
     });
 //    this.forceUpdate();
   }
@@ -461,22 +451,11 @@ class App extends Component {
               <p>Found {this.state.Images.length} images</p>
               <p>looked for '{this.state.searchTerm}'</p>
             </section>
-            <Results images={this.state.Images} DisplayMissCount={this.state.DisplayMissCount} goForward={this.goForward} />
+            <Results images={this.state.Images} DisplayMissCount={this.state.DisplayMissCount} DisplayMissCountEnd={this.state.DisplayMissCount + 4} goForward={this.goForward} showImage={this.state.showImage} />
           </div>
         )}
 
-        {this.state.imageDetails.title !== "" && (
-          <FullDetails
-            title={this.state.imageDetails.title}
-            description={this.state.imageDetails.description}
-            area={this.state.imageDetails.area}
-            AccessionNo={this.state.imageDetails.AccessionNo.trim()}
-            classno={this.state.imageDetails.classno}
-            dateofimage={this.state.imageDetails.dateofimage}
-            showSimilarImages={this.showSimilarImages}
-          />
-        )
-        }
+
 
         <section class="box album">Albums</section>
       </div>

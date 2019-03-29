@@ -7,12 +7,12 @@ class ImageDetails extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      title: this.props.title,
-      AccessionNo: this.props.AccessionNo,
-      description: this.props.description,
-      classno: this.props.classno,
-      dateofimage: this.props.dateofimage,
-      area: this.props.area,
+      // title: this.props.title,
+      // AccessionNo: this.props.AccessionNo,
+      // description: this.props.description,
+      // classno: this.props.classno,
+      // dateofimage: this.props.dateofimage,
+      // area: this.props.area,
       ImageDetails: {}
     };
     this.checkImageExists = this.checkImageExists.bind(this);
@@ -42,23 +42,23 @@ class ImageDetails extends Component {
       <section className="results">
       <div className="individualResult">
        
-        <img src={imgSrcConfirmed} text={this.state.title} width="100" />
+        <img src={imgSrcConfirmed} text={this.props.title} width="100" />
         <button
           className="Button"
           onClick={() => {
             this.props.showImage(
-              this.state.AccessionNo,
-              this.state.title,
-              this.state.description,
-              this.state.area,
-              this.state.dateofimage,
-              this.state.classno
+              this.props.AccessionNo,
+              this.props.title,
+              this.props.description,
+              this.props.area,
+              this.props.dateofimage,
+              this.props.classno
             );
           }}
         >
           Show more
         </button>
-        <p>{this.state.title}</p>
+        <p>{this.props.title}</p>
         </div>
       </section>
     );
