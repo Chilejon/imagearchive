@@ -24,22 +24,34 @@ body {
   display: flex;
   flex-direction: row;
   padding-top: 10px;
+  margin-bottom: 10px;
 }
 
 .box .results{
   padding-top: 10px;
   padding-left: 20px;
   padding-bottom: 20px;
+
 }
 
 
 .individualResult{
   display: flex;
   flex-direction: column;
+  width:100px;
 }
 
 .individualResult p{
   height: 20px;
+}
+
+.nextButton{
+  align-self: center;
+  margin-left: 20px;
+}
+
+.prevButton{
+  align-self: center;
 }
 
 .results img {
@@ -55,6 +67,7 @@ body {
 
 .bigImage {
   grid-area: bigImage;
+  height: 400px;
 }
 
 .search {

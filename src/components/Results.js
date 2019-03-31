@@ -46,7 +46,7 @@ class Results extends Component {
   }
 
   render() {
-    
+//    alert(this.props.DisplayMissCountEnd)
     var images = this.props.images.slice(this.props.DisplayMissCount, this.props.DisplayMissCountEnd).map(Images => {
       return (
         <ImageDetails
@@ -66,15 +66,25 @@ class Results extends Component {
     return (
       <div>
         <section className="box results">
+        <button
+            className="box prevButton"
+            onClick={() => {
+              this.props.goBack();
+            }}
+          >
+            Prev 4
+             </button>
+          {images}
           <button
-            className="Button"
+            className="box nextButton"
             onClick={() => {
               this.props.goForward();
             }}
           >
-            &gt;
+            Next 4
              </button>
-          {images}
+
+
         </section>
         <section>
           {this.state.imageDetails.title !== "" && (

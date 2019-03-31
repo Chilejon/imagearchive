@@ -7,12 +7,6 @@ class ImageDetails extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      // title: this.props.title,
-      // AccessionNo: this.props.AccessionNo,
-      // description: this.props.description,
-      // classno: this.props.classno,
-      // dateofimage: this.props.dateofimage,
-      // area: this.props.area,
       ImageDetails: {}
     };
     this.checkImageExists = this.checkImageExists.bind(this);
@@ -33,11 +27,6 @@ class ImageDetails extends Component {
 
   render() {
     var imgSrcConfirmed = imgSrc + this.props.AccessionNo + ".jpg";
-
-    // imgSrcConfirmed = this.checkImageExists(
-    //   imgSrc + this.props.AccessionNo + ".jpg"
-    // );
-    
     return (
       <section className="results">
       <div className="individualResult">
@@ -58,7 +47,7 @@ class ImageDetails extends Component {
         >
           Show more
         </button>
-        <p>{this.props.title}</p>
+        {this.props.title}
         </div>
       </section>
     );
