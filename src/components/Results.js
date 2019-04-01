@@ -47,7 +47,7 @@ class Results extends Component {
 
   render() {
 //    alert(this.props.DisplayMissCountEnd)
-    var images = this.props.images.slice(this.props.DisplayMissCount, this.props.DisplayMissCountEnd).map(Images => {
+    var images = this.props.images.slice(this.props.FirstImage, this.props.LastImage).map(Images => {
       return (
         <ImageDetails
           title={Images.title}
@@ -57,7 +57,6 @@ class Results extends Component {
           dateofimage={Images.dateofimage.trim()}
           classno={Images.classno.trim()}
           getImage={this.getImage}
-//          showImage={this.props.showImage}
           showImage={this.showImage}
         />
       );

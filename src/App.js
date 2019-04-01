@@ -29,8 +29,8 @@ class App extends Component {
     this.state = {
       Images:DogData,
       areas: [],
-      DisplayMissCount: 0,
-      DisplayMissCountEnd: 6,
+      FirstImage: 0,
+      LastImage: 6,
       DisplayCount: 6,
       imageDetails: {
         title: "",
@@ -133,22 +133,22 @@ class App extends Component {
   }
 
   goBack() {
-    var tempValue = this.state.DisplayMissCount
-    var endImage = 12
-
+    var goFwdNumber = parseInt(this.state.DisplayCount)
+    var lastImage = this.state.LastImage - parseInt(goFwdNumber)
+    var firstImage = parseInt(this.state.FirstImage) - parseInt(goFwdNumber) 
     this.setState({
-      DisplayMissCount: tempValue - tempValue,
-      DisplayMissCountEnd: endImage
+      FirstImage: firstImage,
+      LastImage: lastImage
     });
   }
 
   goForward() {
-    var tempValue = this.state.DisplayMissCount
-    var endImage = 12
-
+    var goFwdNumber = parseInt(this.state.DisplayCount)
+    var lastImage = this.state.LastImage + parseInt(goFwdNumber)
+    var firstImage = parseInt(this.state.FirstImage) + parseInt(goFwdNumber) 
     this.setState({
-      DisplayMissCount: 6,
-      DisplayMissCountEnd: endImage
+      FirstImage: firstImage,
+      LastImage: lastImage
     });
   }
 
@@ -200,7 +200,7 @@ class App extends Component {
               <p>Found {this.state.Images.length} images</p>
               <p>looked for '{this.state.searchTerm}'</p>
             </section>
-            <Results images={this.state.Images} DisplayMissCount={this.state.DisplayMissCount} DisplayMissCountEnd={this.state.DisplayMissCountEnd} goForward={this.goForward} goBack={this.goBack} showImage={this.state.showImage} />
+            <Results images={this.state.Images} FirstImage={this.state.FirstImage} LastImage={this.state.LastImage} goForward={this.goForward} goBack={this.goBack} showImage={this.state.showImage} />
           </div>
         )}
 
