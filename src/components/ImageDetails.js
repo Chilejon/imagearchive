@@ -33,7 +33,7 @@ class ImageDetails extends Component {
        
         <img src={imgSrcConfirmed} text={this.props.title} width="100" />
         <button
-          className="Button"
+          className="ShowBig"
           onClick={() => {
             this.props.showImage(
               this.props.AccessionNo,

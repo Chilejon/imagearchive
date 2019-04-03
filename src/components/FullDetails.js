@@ -38,7 +38,7 @@ class FullDetails extends Component {
         <p>Date: {this.props.dateofimage}</p>
 
         <button
-          className="showSimilarImages"
+          className="ShowBig"
           onClick={() => {
             this.props.showSimilarImages(
               this.props.classno

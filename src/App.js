@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import ImageDetails from "./components/ImageDetails";
-import FullDetails from "./components/FullDetails";
 import Searchbox from "./components/Searchbox";
 //import { Column, Row } from "simple-flexbox";
 //import loading from "./images/smLoading.gif";
@@ -27,7 +25,7 @@ class App extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      Images:DogData,
+      Images: DogData,
       areas: [],
       FirstImage: 0,
       LastImage: 6,
@@ -100,7 +98,7 @@ class App extends Component {
     //console.log("here " + apiLink)
   }
 
-  
+
 
   showSimilarImages(classno) {
     this.setState({
@@ -135,7 +133,7 @@ class App extends Component {
   goBack() {
     var goFwdNumber = parseInt(this.state.DisplayCount)
     var lastImage = this.state.LastImage - parseInt(goFwdNumber)
-    var firstImage = parseInt(this.state.FirstImage) - parseInt(goFwdNumber) 
+    var firstImage = parseInt(this.state.FirstImage) - parseInt(goFwdNumber)
     this.setState({
       FirstImage: firstImage,
       LastImage: lastImage
@@ -145,7 +143,7 @@ class App extends Component {
   goForward() {
     var goFwdNumber = parseInt(this.state.DisplayCount)
     var lastImage = this.state.LastImage + parseInt(goFwdNumber)
-    var firstImage = parseInt(this.state.FirstImage) + parseInt(goFwdNumber) 
+    var firstImage = parseInt(this.state.FirstImage) + parseInt(goFwdNumber)
     this.setState({
       FirstImage: firstImage,
       LastImage: lastImage
@@ -188,7 +186,6 @@ class App extends Component {
     // {
     //  console.log(this.state.isLoading);
 
-
     return (
       <div className="wrapper">
         <section className="box search">
@@ -197,14 +194,13 @@ class App extends Component {
         {this.state.Images.length !== 0 && (
           <div>
             <section className="box resultsHeader" style={{ paddingTop: 10, paddingBottom: 50 }}>
-              <p>Found {this.state.Images.length} images</p>
-              <p>looked for '{this.state.searchTerm}'</p>
+              <p>Search term: '{this.state.searchTerm}'.
+              Showing images '{this.state.FirstImage + 1}' to '{this.state.LastImage > this.state.Images.length ? this.state.Images.length : this.state.LastImage}' of found {this.state.Images.length} images.
+              </p>
             </section>
-            <Results images={this.state.Images} FirstImage={this.state.FirstImage} LastImage={this.state.LastImage} goForward={this.goForward} goBack={this.goBack} showImage={this.state.showImage} />
+            <Results images={this.state.Images} showSimilarImages={this.showSimilarImages} TotalImageCount={this.state.Images.length} DisplayCount={this.state.DisplayCount} FirstImage={this.state.FirstImage} LastImage={this.state.LastImage > this.state.Images.length ? this.state.Images.length : this.state.LastImage} goForward={this.goForward} goBack={this.goBack} showImage={this.state.showImage} />
           </div>
         )}
-
-
 
         <section class="box album">Albums</section>
       </div>

@@ -46,7 +46,9 @@ class Results extends Component {
   }
 
   render() {
-//    alert(this.props.DisplayMissCountEnd)
+
+    console.log()
+
     var images = this.props.images.slice(this.props.FirstImage, this.props.LastImage).map(Images => {
       return (
         <ImageDetails
@@ -65,26 +67,29 @@ class Results extends Component {
     return (
       <div>
         <section className="box results">
-        <button
+          <button
             className="box prevButton"
             onClick={() => {
               this.props.goBack();
             }}
+            hidden={this.props.FirstImage === 0}
+            
           >
-            Prev 4
-             </button>
+            Prev {this.props.DisplayCount}
+          </button>
           {images}
           <button
             className="box nextButton"
             onClick={() => {
               this.props.goForward();
             }}
+            hidden={this.props.LastImage >= this.props.TotalImageCount}
           >
-            Next 4
-             </button>
-
-
+            Next {this.props.DisplayCount}
+            
+          </button>
         </section>
+
         <section>
           {this.state.imageDetails.title !== "" && (
             <FullDetails
@@ -94,7 +99,7 @@ class Results extends Component {
               AccessionNo={this.state.imageDetails.AccessionNo.trim()}
               classno={this.state.imageDetails.classno}
               dateofimage={this.state.imageDetails.dateofimage}
-              showSimilarImages={this.showSimilarImages}
+              showSimilarImages={this.props.showSimilarImages}
             />
           )
           }
