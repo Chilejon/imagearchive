@@ -25,7 +25,6 @@ class Results extends Component {
         idno: 2577
       }
     };
-
     this.showImage = this.showImage.bind(this);
   }
 

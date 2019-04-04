@@ -3,8 +3,11 @@ import Searchbox from "./components/Searchbox";
 //import { Column, Row } from "simple-flexbox";
 //import loading from "./images/smLoading.gif";
 import DogData from "./data/dog.json"
+import sd71 from "./data/sd71.json"
+import AlbumsData from "./data/albums.json"
 import "./css/imagearchive.css";
 import Results from "./components/Results";
+import Albums from "./components/Albums"
 
 const getAreas = "http://interactive.stockport.gov.uk/siarestapi/v1/Getareas";
 
@@ -26,6 +29,7 @@ class App extends Component {
     super(props, context);
     this.state = {
       Images: DogData,
+      Albums: AlbumsData,
       areas: [],
       FirstImage: 0,
       LastImage: 6,
@@ -104,7 +108,7 @@ class App extends Component {
     this.setState({
       Images: [],
       isLoading: true,
-      DisplayCount: 10,
+      DisplayCount: 6,
       imageDetails: {
         title: "",
         description: "",
@@ -117,6 +121,12 @@ class App extends Component {
     });
     var apiLink = "";
     apiLink = GetPhotosByClassNo + classno;
+    //temp while not cors working
+    this.setState({
+      Images:sd71,
+      searchTerm: classno,
+      isLoading: false  
+    })
     //alert(apiLink)
     fetch(apiLink)
       .then(response => response.json())
@@ -202,7 +212,7 @@ class App extends Component {
           </div>
         )}
 
-        <section class="box album">Albums</section>
+        <section class="box album"><Albums Albums={this.state.Albums}/></section>
       </div>
     )
   }

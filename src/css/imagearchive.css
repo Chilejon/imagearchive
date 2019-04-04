@@ -62,6 +62,7 @@ body {
   color: white;
   height: 52px;
   border: none;
+  border-radius: 10px;
 }
 
 .ShowBig {
