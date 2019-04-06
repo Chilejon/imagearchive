@@ -1,0 +1,34 @@
+import React, { Component } from "react";
+
+const imgSrc =
+  "http://interactive.stockport.gov.uk/stockportimagearchive/SIA/thumbnails/";
+
+class AlbumDetails extends Component {
+  constructor(props, context) {
+    super(props, context);
+  }
+
+  render() {
+    var imgSrcConfirmed = imgSrc + this.props.AccessionNo.trim() + ".jpg";
+    return (
+      <section className="results">
+      <div className="individualResult">
+        <img src={imgSrcConfirmed} text={this.props.title} width="100" 
+        onClick={() => {
+          this.props.showImage(
+            this.props.AccessionNo,
+            this.props.title,
+            this.props.description,
+            this.props.area,
+            this.props.dateofimage,
+            this.props.classno
+          );
+        }}
+        />
+        {this.props.title}
+        </div>
+      </section>
+    );
+  }
+}
+export default AlbumDetails;
