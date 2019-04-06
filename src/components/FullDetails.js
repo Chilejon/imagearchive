@@ -18,35 +18,49 @@ class FullDetails extends Component {
   render() {
     console.log(this.props);
     return (
-       <section className="box bigImage">
-       <section className="imagePicture">
-        <img
-          src={imgSrc + this.props.AccessionNo + ".jpg"}
-          text={this.props.title}
-        />
+      <section className="box bigImage">
+        <section className="imagePicture">
+          <img
+            src={imgSrc + this.props.AccessionNo + ".jpg"}
+            text={this.props.title}
+          />
         </section>
         <section className="imageText">
-        <h2>Full details</h2>
-        <p>{this.props.title}</p>
-        <p>{this.props.description}</p>
-        <p>
-          AccessionNo: {this.props.AccessionNo}
+          <button className="ShowBig"
+            onClick={() => {
+              this.props.prevImage(
+                this.props.AccessionNo
+              );
+            }}>
+            Prev </button>
+
+          <button className="ShowBig"
+            onClick={() => {
+              this.props.nextImage(
+                this.props.AccessionNo
+              );
+            }}>
+            Next </button>
+          <p>{this.props.title}</p>
+          <p>{this.props.description}</p>
+          <p>
+            AccessionNo: {this.props.AccessionNo}
           </p>
           <p>  Area: {this.props.area} </p>
           <p>Class: {this.props.classno}
-        </p>
-        <p>Date: {this.props.dateofimage}</p>
+          </p>
+          <p>Date: {this.props.dateofimage}</p>
 
-        <button
-          className="ShowBig"
-          onClick={() => {
-            this.props.showSimilarImages(
-              this.props.classno
-            );
-          }}
-        >Similar images</button>
+          <button
+            className="ShowBig"
+            onClick={() => {
+              this.props.showSimilarImages(
+                this.props.classno
+              );
+            }}
+          >Similar images</button>
         </section>
-</section>
+      </section>
     );
   }
 }

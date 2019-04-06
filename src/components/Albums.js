@@ -12,11 +12,8 @@ class Albums extends Component {
     console.log(this.props.Albums)
     var Albums = this.props.Albums.map(Albums => {
       if (Albums.status === 'Live') {
-
         return (
-
           <AlbumDetails AccessionNo={Albums.albumcover} title={Albums.albumtitle} />
-          // <p>{Albums.albumtitle}</p>
         );
       }
     })

@@ -26,7 +26,7 @@ const GetPhotosByClassNo = "http://interactive.stockport.gov.uk/siarestapi/v1/Ge
 
 class App extends Component {
   constructor(props, context) {
-    super(props, context);
+    super(props, context)
     this.state = {
       Images: DogData,
       Albums: AlbumsData,
@@ -98,11 +98,8 @@ class App extends Component {
           isLoading: false
         });
       });
-
-    //console.log("here " + apiLink)
+ 
   }
-
-
 
   showSimilarImages(classno) {
     this.setState({
@@ -160,42 +157,10 @@ class App extends Component {
     });
   }
 
-  render() {
-    // var images
-    // if (this.state.Images !== null) {
-    //   console.log("weeeee")
-    //   console.log(images)
-    //   //var imagesDisplayedCount = 1;
-    //   //var imagesInTotal = 0;
-    //   //alert(this.state.DisplayMissCount )
-    //   //imagesInTotal = imagesInTotal + 1;
-    //   //console.log(this.state.DisplayMissCount)
-    //    images = this.state.Images.slice(this.state.DisplayMissCount, this.state.DisplayCount).map(Images => {
-    //     console.log(images)
-    //     //    if (imagesInTotal > this.state.DisplayMissCount) {
-    //     //      if (imagesDisplayedCount <= this.state.DisplayCount) {
-    //     //        imagesDisplayedCount = imagesDisplayedCount + 1;
-    //     return (
-    //       <ImageDetails
-    //         title={Images.title}
-    //         AccessionNo={Images.AccessionNo.trim()}
-    //         description={Images.description.trim()}
-    //         area={Images.area}
-    //         dateofimage={Images.dateofimage.trim()}
-    //         classno={Images.classno.trim()}
-    //         getImage={this.getImage}
-    //         showImage={this.showImage}
-    //       />
-    //     );
-    //   }
-    //   )
-    // }
-    //}
-    // else {
-    // }
-    // {
-    //  console.log(this.state.isLoading);
 
+
+
+  render() {
     return (
       <div className="wrapper">
         <section className="box search">

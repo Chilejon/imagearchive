@@ -26,6 +26,8 @@ class Results extends Component {
       }
     };
     this.showImage = this.showImage.bind(this);
+    this.nextImage = this.nextImage.bind(this);
+    this.prevImage = this.prevImage.bind(this);
   }
 
 
@@ -44,10 +46,69 @@ class Results extends Component {
     // window.scrollTo(0, 0);
   }
 
+  nextImage(awooga) {
+    var blah
+    var count = 0
+    var next
+    var array = this.props.images
+    array.forEach(array => {
+      if (array.AccessionNo.trim() === awooga) {
+        next = count + 2
+      }
+      count = count + 1
+    });
+   count = 1
+   array.forEach(array => {
+    if (count === next)
+    {
+      blah = {
+        AccessionNo: array.AccessionNo,
+        title: array.title,
+        description: array.description,
+        area: array.area,
+        classno: array.classno,
+        dateofimage: array.dateofimage
+      }
+    }
+    count = count + 1
+  });
+    this.setState({
+      imageDetails: blah
+    });
+  }
+
+  prevImage(awooga) {
+    var blah
+    var count = 0
+    var prev
+    var array = this.props.images
+    array.forEach(array => {
+      if (array.AccessionNo.trim() === awooga) {
+        prev = count
+      }
+      count = count + 1
+    });
+   count = 1
+   array.forEach(array => {
+    if (count === prev)
+    {
+      blah = {
+        AccessionNo: array.AccessionNo,
+        title: array.title,
+        description: array.description,
+        area: array.area,
+        classno: array.classno,
+        dateofimage: array.dateofimage
+      }
+    }
+    count = count + 1
+  });
+    this.setState({
+      imageDetails: blah
+    });
+  }
+
   render() {
-
-    console.log()
-
     var images = this.props.images.slice(this.props.FirstImage, this.props.LastImage).map(Images => {
       return (
         <ImageDetails
@@ -72,7 +133,7 @@ class Results extends Component {
               this.props.goBack();
             }}
             hidden={this.props.FirstImage === 0}
-            
+
           >
             Prev {this.props.DisplayCount}
           </button>
@@ -85,7 +146,7 @@ class Results extends Component {
             hidden={this.props.LastImage >= this.props.TotalImageCount}
           >
             Next {this.props.DisplayCount}
-            
+
           </button>
         </section>
 
@@ -99,6 +160,10 @@ class Results extends Component {
               classno={this.state.imageDetails.classno}
               dateofimage={this.state.imageDetails.dateofimage}
               showSimilarImages={this.props.showSimilarImages}
+              nextImageAccessionNo={this.state.imageDetails.AccessionNo}
+              prevImageAccessionNo={this.state.imageDetails.AccessionNo}
+              nextImage={this.nextImage}
+              prevImage={this.prevImage}
             />
           )
           }
