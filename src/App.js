@@ -9,14 +9,14 @@ import "./css/imagearchive.css";
 import Results from "./components/Results";
 import Albums from "./components/Albums"
 
-const getAreas = "http://interactive.stockport.gov.uk/siarestapi/v1/Getareas";
+//const getAreas = "http://interactive.stockport.gov.uk/siarestapi/v1/Getareas";
 
-const API3 =
-  "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByID?id=3";
+//const API3 =
+//  "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByID?id=3";
 const GetPhotosSearchTitle =
   "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByTitle/?term=";
-const GetPhotoByID =
-  "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByID?id=";
+//const GetPhotoByID =
+//  "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByID?id=";
 const GetPhotosSearchAll =
   "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByTerm?term=";
 const GetPhotosByTermAndArea =

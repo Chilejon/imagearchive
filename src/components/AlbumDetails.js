@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import checkImage from "../utils/checkImage"
 
 const imgSrc =
   "http://interactive.stockport.gov.uk/stockportimagearchive/SIA/thumbnails/";

@@ -30,7 +30,6 @@ class Results extends Component {
     this.prevImage = this.prevImage.bind(this);
   }
 
-
   showImage(AccessionNo, title, description, area, dateofimage, classno) {
     console.log(AccessionNo + " " + title)
     this.setState({
@@ -57,6 +56,8 @@ class Results extends Component {
       }
       count = count + 1
     });
+    if (next <= this.props.TotalImageCount)
+    {
    count = 1
    array.forEach(array => {
     if (count === next)
@@ -72,9 +73,11 @@ class Results extends Component {
     }
     count = count + 1
   });
+ 
     this.setState({
       imageDetails: blah
     });
+  }
   }
 
   prevImage(awooga) {
@@ -88,6 +91,8 @@ class Results extends Component {
       }
       count = count + 1
     });
+    if (prev !== 0)
+    {
    count = 1
    array.forEach(array => {
     if (count === prev)
@@ -106,6 +111,7 @@ class Results extends Component {
     this.setState({
       imageDetails: blah
     });
+  }
   }
 
   render() {
