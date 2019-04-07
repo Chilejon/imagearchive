@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import checkImage from "../utils/checkImage"
+import helpers from "../utils/checkImage"
 
 const imgSrc =
   "http://interactive.stockport.gov.uk/stockportimagearchive/SIA/thumbnails/";
@@ -10,7 +10,7 @@ class AlbumDetails extends Component {
   }
 
   render() {
-    var imgSrcConfirmed = imgSrc + this.props.AccessionNo.trim() + ".jpg";
+    var imgSrcConfirmed = imgSrc + helpers.helper1(this.props.AccessionNo);
     return (
       <section className="results">
       <div className="individualResult">

@@ -17,6 +17,30 @@ class FullDetails extends Component {
 
   render() {
     console.log(this.props);
+    var nextImage
+    if(this.props.nextImageAccessionNo !== "")
+    {
+      nextImage = <button className="ShowBig"
+      onClick={() => {
+        this.props.nextImage(
+          this.props.AccessionNo
+        );
+      }}>
+      Next </button>
+    }
+
+    var prevImage
+    if(this.props.prevImage !== "")
+    {
+      prevImage = <button className="ShowBig"
+      onClick={() => {
+        this.props.prevImage(
+          this.props.AccessionNo
+        );
+      }}>
+      Prev </button>
+    }
+
     return (
       <section className="box bigImage">
         <section className="imagePicture">
@@ -26,21 +50,9 @@ class FullDetails extends Component {
           />
         </section>
         <section className="imageText">
-          <button className="ShowBig"
-            onClick={() => {
-              this.props.prevImage(
-                this.props.AccessionNo
-              );
-            }}>
-            Prev </button>
+          
 
-          <button className="ShowBig"
-            onClick={() => {
-              this.props.nextImage(
-                this.props.AccessionNo
-              );
-            }}>
-            Next </button>
+          {prevImage}  {nextImage}
           <p>{this.props.title}</p>
           <p>{this.props.description}</p>
           <p>
