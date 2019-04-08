@@ -1,0 +1,143 @@
+body {
+    margin: 40px;
+  }
+  
+  .searchString {
+          grid-area: searchString;
+      }
+  
+      .searchResults {
+          grid-area: searchResults;
+      }
+  
+      .fullDetails {
+          grid-area: fullDetails;
+      }
+  
+      .searchBox {
+          grid-area: searchBox;
+      }
+  
+      .albums {
+          grid-area: albums;
+      }
+  
+      .wrapper {
+          background-color: #fff;
+          color: #444;
+      }
+  
+    .wrapper {
+      display: grid;
+      grid-gap: 1em;
+      grid-template-columns: 100%;
+      grid-template-areas:
+       "searchBox"
+       "searchString"
+       "searchResults"
+       "fullDetails"
+       "albums"
+    }
+  
+      @media only screen and (min-width: 500px)  {
+      .wrapper {
+          grid-template-columns: 100%;
+          grid-template-areas:
+          "searchBox"
+          "searchString"
+          "searchResults"
+          "fullDetails"
+          "albums";
+      }
+      }
+  
+      @media only screen and (min-width: 1000px)   {
+          .wrapper {
+        grid-gap: 10px;
+              grid-template-columns: auto;
+              grid-template-rows: 100px;
+              grid-template-areas:
+             "searchBox"
+              "searchString"
+              "searchResults"
+              "fullDetails"
+              "albums";
+              max-width: 1366px;
+          }
+      }
+  
+  .box {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 100%; 
+  }
+ 
+  .searchBox,
+  .albums {
+    background-color: #999;
+  }
+  
+  .searchBox input{
+    height:50px;
+    width: 400px;
+    font-size: 24px;
+    padding: 0 20px 0px 20px;
+    border-radius: 10px;
+  }
+  
+  .searchBox select{
+    height:54px;
+    min-width: 80px;
+    font-size: 24px;
+    border-radius: 10px;
+  }
+  
+
+  .searchResults {
+    background-color: #ccc;
+    color: #444;
+  }
+
+  .bigImageBorder img {
+    width: 400px;
+    margin: 50px 0px 50px -50px;
+    border-radius: 20px;
+  
+  }
+  
+  .imageText {
+    text-align: right;
+    margin-left: 600px;
+  }
+  
+  .imagePicture {
+    float: left;
+   
+  }
+  
+  .imagePicture img{
+    border-radius: 20px;
+  }
+  
+  .loading{
+    background-color: #fff;
+    width: 20px;
+    padding: 10px;
+  }
+
+  .individualResult{
+ 
+  }
+  
+  .individualResult p{
+  }
+
+  .results {
+    grid-area: results;
+    display: flex;
+    flex-direction: row;
+    padding-top: 0px;
+    margin-bottom: 10px;
+  }

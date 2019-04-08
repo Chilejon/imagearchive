@@ -5,7 +5,8 @@ import Searchbox from "./components/Searchbox";
 import DogData from "./data/dog.json"
 import sd71 from "./data/sd71.json"
 import AlbumsData from "./data/albums.json"
-import "./css/imagearchive.css";
+// import "./css/imagearchive.css";
+import "./css/grid.css";
 import Results from "./components/Results";
 import Albums from "./components/Albums"
 
@@ -98,7 +99,7 @@ class App extends Component {
           isLoading: false
         });
       });
- 
+
   }
 
   showSimilarImages(classno) {
@@ -120,9 +121,9 @@ class App extends Component {
     apiLink = GetPhotosByClassNo + classno;
     //temp while not cors working
     this.setState({
-      Images:sd71,
+      Images: sd71,
       searchTerm: classno,
-      isLoading: false  
+      isLoading: false
     })
     //alert(apiLink)
     fetch(apiLink)
@@ -163,22 +164,37 @@ class App extends Component {
   render() {
     return (
       <div className="wrapper">
-        <section className="box search">
+
+
+
+
+        <header class="box searchBox">
           <Searchbox searchWhat={this.state.searchWhat} search={this.search} isLoading={this.state.isLoading} />
-        </section>
+        </header>
+
         {this.state.Images.length !== 0 && (
-          <div>
-            <section className="box resultsHeader" style={{ paddingTop: 10, paddingBottom: 50 }}>
-              <p>Search term: '{this.state.searchTerm}'.
+<div>
+          <section className="box searchString" >
+            <p>Search term: '{this.state.searchTerm}'.
               Showing images '{this.state.FirstImage + 1}' to '{this.state.LastImage > this.state.Images.length ? this.state.Images.length : this.state.LastImage}' of found {this.state.Images.length} images.
               </p>
-            </section>
+          </section>
+
+
             <Results images={this.state.Images} showSimilarImages={this.showSimilarImages} TotalImageCount={this.state.Images.length} DisplayCount={this.state.DisplayCount} FirstImage={this.state.FirstImage} LastImage={this.state.LastImage > this.state.Images.length ? this.state.Images.length : this.state.LastImage} goForward={this.goForward} goBack={this.goBack} showImage={this.state.showImage} />
-          </div>
+
+
+          {/* <section class="box fullDetails">
+            Full details
+        </section> */}
+        </div>
         )}
 
-        <section class="box album"><Albums Albums={this.state.Albums}/></section>
+        <footer class="box albums">
+          <Albums Albums={this.state.Albums} />
+        </footer>
       </div>
+
     )
   }
 }

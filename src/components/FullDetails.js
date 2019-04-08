@@ -42,7 +42,7 @@ class FullDetails extends Component {
     }
 
     return (
-      <section className="box bigImage">
+      <section className="box fullDetails">
         <section className="imagePicture">
           <img
             src={imgSrc + this.props.AccessionNo + ".jpg"}

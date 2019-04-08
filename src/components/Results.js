@@ -132,7 +132,7 @@ class Results extends Component {
     )
     return (
       <div>
-        <section className="box results">
+        <section className="box searchResults">
           <button
             className="box prevButton"
             onClick={() => {
