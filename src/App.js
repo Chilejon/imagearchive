@@ -190,7 +190,7 @@ class App extends Component {
         </div>
         )}
 
-        <footer class="box albums">
+        <footer>
           <Albums Albums={this.state.Albums} />
         </footer>
       </div>

@@ -28,23 +28,23 @@ class ImageDetails extends Component {
   render() {
     var imgSrcConfirmed = imgSrc + this.props.AccessionNo + ".jpg";
     return (
-      <section className="results">
-      <div className="individualResult">
+      // <section className="results">
+      <div className="box" onClick={() => {
+        this.props.showImage(
+          this.props.AccessionNo,
+          this.props.title,
+          this.props.description,
+          this.props.area,
+          this.props.dateofimage,
+          this.props.classno
+        );
+      }}>
        
         <img src={imgSrcConfirmed} text={this.props.title} width="100" 
-        onClick={() => {
-          this.props.showImage(
-            this.props.AccessionNo,
-            this.props.title,
-            this.props.description,
-            this.props.area,
-            this.props.dateofimage,
-            this.props.classno
-          );
-        }}
+
         
         />
-        <button
+        {/* <button
           className="ShowBig"
           onClick={() => {
             this.props.showImage(
@@ -58,10 +58,10 @@ class ImageDetails extends Component {
           }}
         >
           Show more
-        </button>
-        {this.props.title}
+        </button> */}
+        <p>{this.props.title}</p>
         </div>
-      </section>
+      // </section>
     );
   }
 }

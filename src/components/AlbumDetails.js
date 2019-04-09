@@ -12,8 +12,8 @@ class AlbumDetails extends Component {
   render() {
     var imgSrcConfirmed = imgSrc + helpers.helper1(this.props.AccessionNo);
     return (
-      <section className="results">
-      <div className="individualResult">
+      <section className="box">
+
         <img src={imgSrcConfirmed} text={this.props.title} width="100" 
         onClick={() => {
           this.props.showImage(
@@ -27,7 +27,6 @@ class AlbumDetails extends Component {
         }}
         />
         {this.props.title}
-        </div>
       </section>
     );
   }

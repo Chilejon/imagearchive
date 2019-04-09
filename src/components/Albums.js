@@ -19,9 +19,9 @@ class Albums extends Component {
     })
 
     return (
-      <p>
+      <section className="box searchResults">
         {Albums}
-      </p>
+      </section>
     )
   }
 }

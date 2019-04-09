@@ -71,7 +71,9 @@ body {
     color: #fff;
     border-radius: 5px;
     padding: 10px;
-    font-size: 100%; 
+    font-size: 100%;
+ 
+     
   }
  
   .searchBox,
@@ -104,17 +106,17 @@ body {
     width: 400px;
     margin: 50px 0px 50px -50px;
     border-radius: 20px;
-  
   }
   
   .imageText {
+    float: right;
     text-align: right;
-    margin-left: 600px;
+    width:200px;
+    /* margin-left: 400px; */
   }
   
   .imagePicture {
     float: left;
-   
   }
   
   .imagePicture img{
@@ -128,9 +130,24 @@ body {
   }
 
   .searchResults {
-    grid-area: searchResults;
+    margin-top:10px;
+    display: grid;
+    grid-gap: 2%;
+    grid-template-columns: repeat(8, 10%);
+    cursor: pointer;
+  }
+
+  .fullDetails {
+    grid-area: fullDetails;
     display: flex;
     flex-direction: row;
-    padding-top: 0px;
-    margin-bottom: 10px;
+    margin-top:10px;
+  }
+
+  .albums {
+    margin-top:10px;
+    display: grid;
+    grid-gap: 2%;
+    grid-template-columns: repeat(8, 10%);
+    cursor: pointer;
   }
