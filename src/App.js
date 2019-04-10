@@ -20,8 +20,8 @@ const GetPhotosSearchTitle =
 //  "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByID?id=";
 const GetPhotosSearchAll =
   "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByTerm?term=";
-const GetPhotosByTermAndArea =
-  "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByTermArea/?term=";
+const GetPhotosByTitleAndArea =
+  "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByTitleArea/?term=";
 const GetPhotosByClassNo = "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByClassNo/?id=";
 
 
@@ -53,11 +53,12 @@ class App extends Component {
     };
     this.search = this.search.bind(this);
     this.showSimilarImages = this.showSimilarImages.bind(this);
+    this.showAlbums = this.showAlbums.bind(this);
     this.goBack = this.goBack.bind(this);
     this.goForward = this.goForward.bind(this);
   }
 
-  search(searchTerm, area, paginationSize, searchWhat) {
+  search(searchTerm, area, searchWhat) {
     //alert(searchTerm + " " + area + " " + paginationSize);
     this.setState({
       Images: [],
@@ -85,9 +86,15 @@ class App extends Component {
         apiLink = GetPhotosSearchTitle + searchTerm;
         break;
       case "allarea":
-        apiLink = GetPhotosByTermAndArea + searchTerm + "&area=" + area;
+        apiLink = GetPhotosByTitleAndArea + searchTerm + "&area=" + area;
         break;
     }
+
+    if(area !== "" && searchTerm.trim() !== "")
+    {
+      apiLink = GetPhotosByTitleAndArea + searchTerm + "&area=" + area
+    }
+
     //alert(apiLink);
     fetch(apiLink)
       .then(response => response.json())
@@ -158,7 +165,41 @@ class App extends Component {
     });
   }
 
-
+  showAlbums(albumNo) {
+    this.setState({
+      Images: [],
+      isLoading: true,
+      DisplayCount: 6,
+      imageDetails: {
+        title: "",
+        description: "",
+        area: "",
+        classno: "",
+        dateofimage: "",
+        AccessionNo: ""
+      },
+      searchTerm: ''
+    });
+    var apiLink = "";
+    apiLink = GetPhotosByClassNo + albumNo;
+    //temp while not cors working
+    this.setState({
+      Images: sd71,
+      searchTerm: albumNo,
+      isLoading: false
+    })
+    //alert(apiLink)
+    // fetch(apiLink)
+    //   .then(response => response.json())
+    //   .then(json => {
+    //     //alert(json);
+    //     this.setState({
+    //       Images: json,
+    //       searchTerm: albumNo,
+    //       isLoading: false
+    //     });
+    //   });
+  }
 
 
   render() {
@@ -191,7 +232,7 @@ class App extends Component {
         )}
 
         <footer>
-          <Albums Albums={this.state.Albums} />
+          <Albums Albums={this.state.Albums} showAlbums={this.showAlbums} />
         </footer>
       </div>
 

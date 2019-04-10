@@ -43,13 +43,13 @@ class FullDetails extends Component {
 
     return (
       <section className="box fullDetails">
-        <section className="imagePicture">
+        <section className="box imagePicture">
           <img
             src={imgSrc + this.props.AccessionNo + ".jpg"}
             text={this.props.title}
           />
         </section>
-        <section className="imageText">
+        <section className="box">
           
 
           {prevImage}  {nextImage}

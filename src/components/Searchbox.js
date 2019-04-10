@@ -38,7 +38,7 @@ class Searchbox extends Component {
       this.state.areas.length > 0 && (
         <form onSubmit={this.searchTitle}>
           <table>
-            <tr><th>Search term</th><th>fields</th><th>Area</th><th>Pagination</th><th></th></tr>
+            <tr><th>Search term</th><th>fields</th><th>Area</th><th></th></tr>
             <tr>
               <td>          <input
                 id="title"
@@ -69,7 +69,7 @@ class Searchbox extends Component {
                 </select>
 
               </td>
-              <td>
+              {/* <td>
                 <select
                   id="PaginationSize"
                   ref={input => (this.PaginationSize = input)}
@@ -85,7 +85,7 @@ class Searchbox extends Component {
             </option>
                 </select>
 
-              </td>
+              </td> */}
               <td>
                 {this.props.isLoading ? (
                   <span className="loading"><img src={loading} alt={"loading"} width="20" height="20" /></span>
@@ -98,7 +98,6 @@ class Searchbox extends Component {
                         this.props.search(
                           this.title.value,
                           this.area.value,
-                          this.PaginationSize.value,
                           this.searchWhat.value
                         );
                       }}

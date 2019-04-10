@@ -103,15 +103,14 @@ body {
   }
 
   .bigImageBorder img {
-    width: 400px;
     margin: 50px 0px 50px -50px;
     border-radius: 20px;
   }
   
   .imageText {
-    float: right;
+    /* float: right;
     text-align: right;
-    width:200px;
+    width:200px; */
     /* margin-left: 400px; */
   }
   
@@ -121,6 +120,7 @@ body {
   
   .imagePicture img{
     border-radius: 20px;
+    width: 100%;
   }
   
   .loading{
@@ -138,11 +138,20 @@ body {
   }
 
   .fullDetails {
+    margin-top: 10px;
+    display:grid;
+    grid-gap: 2%;
+    grid-template-columns: repeat(2, 45%);
+  }
+
+  /* .fullDetails {
     grid-area: fullDetails;
     display: flex;
     flex-direction: row;
     margin-top:10px;
-  }
+  } */
+
+
 
   .albums {
     margin-top:10px;
