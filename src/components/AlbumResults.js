@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import ImageDetails from "./ImageDetails";
+import AlbumImageDetails from "./AlbumImageDetails";
 import FullDetails from "./FullDetails"
 
-class Results extends Component {
+class AlbumResults extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -26,8 +26,8 @@ class Results extends Component {
       }
     };
     this.showImage = this.showImage.bind(this);
-    this.nextImage = this.nextImage.bind(this);
-    this.prevImage = this.prevImage.bind(this);
+    // this.nextImage = this.nextImage.bind(this);
+    // this.prevImage = this.prevImage.bind(this);
   }
 
   showImage(AccessionNo, title, description, area, dateofimage, classno) {
@@ -45,94 +45,91 @@ class Results extends Component {
     // window.scrollTo(0, 0);
   }
 
-  nextImage(awooga) {
-    var blah
-    var count = 0
-    var next
-    var array = this.props.images
-    array.forEach(array => {
-      if (array.AccessionNo.trim() === awooga) {
-        next = count + 2
-      }
-      count = count + 1
-    });
-    if (next <= this.props.TotalImageCount) {
-      count = 1
-      array.forEach(array => {
-        if (count === next) {
-          blah = {
-            AccessionNo: array.AccessionNo,
-            title: array.title,
-            description: array.description,
-            area: array.area,
-            classno: array.classno,
-            dateofimage: array.dateofimage
-          }
-        }
-        count = count + 1
-      });
+  // nextImage(awooga) {
+  //   var blah
+  //   var count = 0
+  //   var next
+  //   var array = this.props.images
+  //   array.forEach(array => {
+  //     if (array.AccessionNo.trim() === awooga) {
+  //       next = count + 2
+  //     }
+  //     count = count + 1
+  //   });
+  //   if (next <= this.props.TotalImageCount)
+  //   {
+  //  count = 1
+  //  array.forEach(array => {
+  //   if (count === next)
+  //   {
+  //     blah = {
+  //       AccessionNo: array.AccessionNo,
+  //       title: array.title,
+  //       description: array.description,
+  //       area: array.area,
+  //       classno: array.classno,
+  //       dateofimage: array.dateofimage
+  //     }
+  //   }
+  //   count = count + 1
+  // });
+ 
+  //   this.setState({
+  //     imageDetails: blah
+  //   });
+  // }
+  // }
 
-      this.setState({
-        imageDetails: blah
-      });
-    }
-  }
-
-  prevImage(awooga) {
-    var blah
-    var count = 0
-    var prev
-    var array = this.props.images
-    array.forEach(array => {
-      if (array.AccessionNo.trim() === awooga) {
-        prev = count
-      }
-      count = count + 1
-    });
-    if (prev !== 0) {
-      count = 1
-      array.forEach(array => {
-        if (count === prev) {
-          blah = {
-            AccessionNo: array.AccessionNo,
-            title: array.title,
-            description: array.description,
-            area: array.area,
-            classno: array.classno,
-            dateofimage: array.dateofimage
-          }
-        }
-        count = count + 1
-      });
-      this.setState({
-        imageDetails: blah
-      });
-    }
-  }
+  // prevImage(awooga) {
+  //   var blah
+  //   var count = 0
+  //   var prev
+  //   var array = this.props.images
+  //   array.forEach(array => {
+  //     if (array.AccessionNo.trim() === awooga) {
+  //       prev = count
+  //     }
+  //     count = count + 1
+  //   });
+  //   if (prev !== 0)
+  //   {
+  //  count = 1
+  //  array.forEach(array => {
+  //   if (count === prev)
+  //   {
+  //     blah = {
+  //       AccessionNo: array.AccessionNo,
+  //       title: array.title,
+  //       description: array.description,
+  //       area: array.area,
+  //       classno: array.classno,
+  //       dateofimage: array.dateofimage
+  //     }
+  //   }
+  //   count = count + 1
+  // });
+  //   this.setState({
+  //     imageDetails: blah
+  //   });
+  // }
+  // }
 
   render() {
-    if (this.props.images !== null) {
-      var images = this.props.images.slice(this.props.FirstImage, this.props.LastImage).map(Images => {
-        return (
-          <ImageDetails
-            title={Images.title}
-            AccessionNo={Images.AccessionNo.trim()}
-            description={Images.description.trim()}
-            area={Images.area}
-            dateofimage={Images.dateofimage.trim()}
-            classno={Images.classno.trim()}
-            getImage={this.getImage}
-            showImage={this.showImage}
-          />
-        );
-      }
-      )
-    }
-    else {
+    var images = this.props.images.map(Images => {
       return (
-        <p>No images for that search term</p>
-      )
+        <AlbumImageDetails
+          caption={Images.caption}
+          photograph={Images.photograph.trim()}
+          // description={Images.description.trim()}
+          // area={Images.area}
+          // dateofimage={Images.dateofimage.trim()}
+          // classno={Images.classno.trim()}
+          // getImage={this.getImage}
+          showImage={this.showImage}
+        />
+      );
     }
+    )
     return (
       <div>
         <section className="box searchResults">
@@ -141,7 +138,8 @@ class Results extends Component {
             onClick={() => {
               this.props.goBack();
             }}
-            disabled={this.props.FirstImage === 0}
+            hidden={this.props.FirstImage === 0}
+
           >
             Prev {this.props.DisplayCount}
           </button>
@@ -151,7 +149,7 @@ class Results extends Component {
             onClick={() => {
               this.props.goForward();
             }}
-            disabled={this.props.LastImage >= this.props.TotalImageCount}
+            hidden={this.props.LastImage >= this.props.TotalImageCount}
           >
             Next {this.props.DisplayCount}
 
@@ -181,4 +179,4 @@ class Results extends Component {
     );
   }
 }
-export default Results;
+export default AlbumResults;

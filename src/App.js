@@ -9,7 +9,7 @@ import AlbumsData from "./data/albums.json"
 import "./css/grid.css";
 import Results from "./components/Results";
 import Albums from "./components/Albums"
-
+import AlbumResults from "./components/AlbumResults"
 //const getAreas = "http://interactive.stockport.gov.uk/siarestapi/v1/Getareas";
 
 //const API3 =
@@ -24,6 +24,8 @@ const GetPhotosByTitleAndArea =
   "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByTitleArea/?term=";
 const GetPhotosByClassNo = "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByClassNo/?id=";
 
+const GetPhotosByAlbumNo = "http://interactive.stockport.gov.uk/siarestapi/v1/GetAlbumPhoto/?id="
+
 
 class App extends Component {
   constructor(props, context) {
@@ -31,6 +33,7 @@ class App extends Component {
     this.state = {
       Images: DogData,
       Albums: AlbumsData,
+      AlbumImages: [],
       areas: [],
       FirstImage: 0,
       LastImage: 6,
@@ -90,8 +93,7 @@ class App extends Component {
         break;
     }
 
-    if(area !== "" && searchTerm.trim() !== "")
-    {
+    if (area !== "" && searchTerm.trim() !== "") {
       apiLink = GetPhotosByTitleAndArea + searchTerm + "&area=" + area
     }
 
@@ -100,13 +102,22 @@ class App extends Component {
       .then(response => response.json())
       .then(json => {
         //alert(json);
-        this.setState({
-          Images: json,
-          searchTerm: searchTerm,
-          isLoading: false
-        });
-      });
-
+        if (json !== null) {
+          this.setState({
+            Images: json,
+            searchTerm: searchTerm,
+            isLoading: false
+          });
+        }
+        else {
+          this.setState({
+            Images: [],
+            searchTerm: searchTerm,
+            isLoading: false
+          })
+        };
+      }
+      )
   }
 
   showSimilarImages(classno) {
@@ -167,7 +178,7 @@ class App extends Component {
 
   showAlbums(albumNo) {
     this.setState({
-      Images: [],
+      AlbumImages: [],
       isLoading: true,
       DisplayCount: 6,
       imageDetails: {
@@ -181,59 +192,57 @@ class App extends Component {
       searchTerm: ''
     });
     var apiLink = "";
-    apiLink = GetPhotosByClassNo + albumNo;
+    apiLink = GetPhotosByAlbumNo + albumNo;
     //temp while not cors working
-    this.setState({
-      Images: sd71,
-      searchTerm: albumNo,
-      isLoading: false
-    })
-    //alert(apiLink)
-    // fetch(apiLink)
-    //   .then(response => response.json())
-    //   .then(json => {
-    //     //alert(json);
-    //     this.setState({
-    //       Images: json,
-    //       searchTerm: albumNo,
-    //       isLoading: false
-    //     });
-    //   });
+    // this.setState({
+    //   Images: sd71,
+    //   searchTerm: albumNo,
+    //   isLoading: false
+    // })
+    fetch(apiLink)
+      .then(response => response.json())
+      .then(json => {
+        //        alert(json);
+        this.setState({
+          AlbumImages: json,
+          searchTerm: albumNo,
+          isLoading: false
+        });
+      });
   }
 
 
   render() {
     return (
       <div className="wrapper">
-
-
-
-
         <header class="box searchBox">
           <Searchbox searchWhat={this.state.searchWhat} search={this.search} isLoading={this.state.isLoading} />
         </header>
 
         {this.state.Images.length !== 0 && (
-<div>
-          <section className="box searchString" >
-            <p>Search term: '{this.state.searchTerm}'.
+          <div>
+            <section className="box searchString" >
+              <p>Search term: '{this.state.searchTerm}'.
               Showing images '{this.state.FirstImage + 1}' to '{this.state.LastImage > this.state.Images.length ? this.state.Images.length : this.state.LastImage}' of found {this.state.Images.length} images.
               </p>
-          </section>
+            </section>
 
 
             <Results images={this.state.Images} showSimilarImages={this.showSimilarImages} TotalImageCount={this.state.Images.length} DisplayCount={this.state.DisplayCount} FirstImage={this.state.FirstImage} LastImage={this.state.LastImage > this.state.Images.length ? this.state.Images.length : this.state.LastImage} goForward={this.goForward} goBack={this.goBack} showImage={this.state.showImage} />
 
 
-          {/* <section class="box fullDetails">
+            {/* <section class="box fullDetails">
             Full details
         </section> */}
-        </div>
+          </div>
         )}
 
-        <footer>
+        <section>
           <Albums Albums={this.state.Albums} showAlbums={this.showAlbums} />
-        </footer>
+        </section>
+        <section>
+          <AlbumResults images={this.state.AlbumImages} goForward={this.goForward} goBack={this.goBack} showImage={this.state.showImage} />
+        </section>
       </div>
 
     )

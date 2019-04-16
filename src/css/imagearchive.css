@@ -47,10 +47,23 @@ body {
 .nextButton{
   align-self: flex-start;
   margin-left: 20px;
+  cursor: pointer;  
+}
+
+.nextButton:disabled{
+  background-color: #fff;
+  color: #cccccc;
+  cursor: default;
 }
 
 .prevButton{
   align-self: flex-start;
+  cursor: pointer;
+}
+.prevButton:disabled{
+  background-color: #fff;
+  color: #cccccc;
+  cursor: default;
 }
 
 .results img {

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import helpers from "../utils/checkImage"
 
 const imgSrc =
   "http://interactive.stockport.gov.uk/stockportimagearchive/SIA/thumbnails/";
@@ -9,24 +10,12 @@ class ImageDetails extends Component {
     this.state = {
       ImageDetails: {}
     };
-    this.checkImageExists = this.checkImageExists.bind(this);
-  }
-
-  checkImageExists(image_url) {
-    var http = new XMLHttpRequest();
-
-    http.open("HEAD", image_url, false);
-    http.send();
-
-    if (http.status === 404) {
-      return "http://www.wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg";
-    } else {
-      return image_url;
-    }
   }
 
   render() {
     var imgSrcConfirmed = imgSrc + this.props.AccessionNo + ".jpg";
+    imgSrcConfirmed = helpers.checkImageExists(imgSrc + this.props.AccessionNo + ".jpg");
+
     return (
       // <section className="results">
       <div className="box" onClick={() => {
@@ -39,10 +28,10 @@ class ImageDetails extends Component {
           this.props.classno
         );
       }}>
-       
-        <img src={imgSrcConfirmed} text={this.props.title} width="100" 
 
-        
+        <img src={imgSrcConfirmed} text={this.props.title} width="100"
+
+
         />
         {/* <button
           className="ShowBig"
@@ -60,7 +49,7 @@ class ImageDetails extends Component {
           Show more
         </button> */}
         <p>{this.props.title}</p>
-        </div>
+      </div>
       // </section>
     );
   }
