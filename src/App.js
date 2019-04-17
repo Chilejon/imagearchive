@@ -31,9 +31,11 @@ class App extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      Images: DogData,
+      //Images: DogData,
+      Images: [],
       Albums: AlbumsData,
       AlbumImages: [],
+      AlbumTitle:'',
       areas: [],
       FirstImage: 0,
       LastImage: 6,
@@ -176,9 +178,10 @@ class App extends Component {
     });
   }
 
-  showAlbums(albumNo) {
+  showAlbums(albumNo, albumTitle) {
     this.setState({
       AlbumImages: [],
+      AlbumTitle: '',
       isLoading: true,
       DisplayCount: 6,
       imageDetails: {
@@ -202,11 +205,12 @@ class App extends Component {
     fetch(apiLink)
       .then(response => response.json())
       .then(json => {
-        //        alert(json);
+        console.log(json);
         this.setState({
           AlbumImages: json,
           searchTerm: albumNo,
-          isLoading: false
+          isLoading: false,
+          AlbumTitle: albumTitle
         });
       });
   }
@@ -241,7 +245,7 @@ class App extends Component {
           <Albums Albums={this.state.Albums} showAlbums={this.showAlbums} />
         </section>
         <section>
-          <AlbumResults images={this.state.AlbumImages} goForward={this.goForward} goBack={this.goBack} showImage={this.state.showImage} />
+          <AlbumResults images={this.state.AlbumImages} title={this.state.AlbumTitle} showImage={this.state.showImage} />
         </section>
       </div>
 

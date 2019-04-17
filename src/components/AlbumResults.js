@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import AlbumImageDetails from "./AlbumImageDetails";
 import FullDetails from "./FullDetails"
 
+const GetPhotoByID = "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByID?id=";
+
 class AlbumResults extends Component {
   constructor(props, context) {
     super(props, context);
@@ -30,91 +32,43 @@ class AlbumResults extends Component {
     // this.prevImage = this.prevImage.bind(this);
   }
 
-  showImage(AccessionNo, title, description, area, dateofimage, classno) {
-    console.log(AccessionNo + " " + title)
+  showImage(photograph) {
+    //alert(searchTerm + " " + area + " " + paginationSize);
     this.setState({
       imageDetails: {
-        AccessionNo: AccessionNo,
-        title: title,
-        description: description,
-        area: area,
-        classno: classno,
-        dateofimage: dateofimage
+        title: "",
+        description: "",
+        area: "",
+        classno: "",
+        dateofimage: "",
+        AccessionNo: ""
       }
     });
-    // window.scrollTo(0, 0);
+    var apiLink = "";
+    apiLink = GetPhotoByID + photograph;
+    fetch(apiLink)
+      .then(response => response.json())
+      .then(json => {
+        if (json !== null) {
+          this.setState({
+            imageDetails: json,
+            searchTerm: photograph,
+            isLoading: false
+          });
+        }
+        else {
+          this.setState({
+            Images: [],
+            searchTerm: photograph,
+            isLoading: false
+          })
+        };
+      }
+      )
   }
 
-  // nextImage(awooga) {
-  //   var blah
-  //   var count = 0
-  //   var next
-  //   var array = this.props.images
-  //   array.forEach(array => {
-  //     if (array.AccessionNo.trim() === awooga) {
-  //       next = count + 2
-  //     }
-  //     count = count + 1
-  //   });
-  //   if (next <= this.props.TotalImageCount)
-  //   {
-  //  count = 1
-  //  array.forEach(array => {
-  //   if (count === next)
-  //   {
-  //     blah = {
-  //       AccessionNo: array.AccessionNo,
-  //       title: array.title,
-  //       description: array.description,
-  //       area: array.area,
-  //       classno: array.classno,
-  //       dateofimage: array.dateofimage
-  //     }
-  //   }
-  //   count = count + 1
-  // });
- 
-  //   this.setState({
-  //     imageDetails: blah
-  //   });
-  // }
-  // }
-
-  // prevImage(awooga) {
-  //   var blah
-  //   var count = 0
-  //   var prev
-  //   var array = this.props.images
-  //   array.forEach(array => {
-  //     if (array.AccessionNo.trim() === awooga) {
-  //       prev = count
-  //     }
-  //     count = count + 1
-  //   });
-  //   if (prev !== 0)
-  //   {
-  //  count = 1
-  //  array.forEach(array => {
-  //   if (count === prev)
-  //   {
-  //     blah = {
-  //       AccessionNo: array.AccessionNo,
-  //       title: array.title,
-  //       description: array.description,
-  //       area: array.area,
-  //       classno: array.classno,
-  //       dateofimage: array.dateofimage
-  //     }
-  //   }
-  //   count = count + 1
-  // });
-  //   this.setState({
-  //     imageDetails: blah
-  //   });
-  // }
-  // }
-
   render() {
+    //alert(this.props.images)
     var images = this.props.images.map(Images => {
       return (
         <AlbumImageDetails
@@ -130,31 +84,17 @@ class AlbumResults extends Component {
       );
     }
     )
+    console.log(this.props.title)
     return (
       <div>
-        <section className="box searchResults">
-          <button
-            className="box prevButton"
-            onClick={() => {
-              this.props.goBack();
-            }}
-            hidden={this.props.FirstImage === 0}
-
-          >
-            Prev {this.props.DisplayCount}
-          </button>
-          {images}
-          <button
-            className="box nextButton"
-            onClick={() => {
-              this.props.goForward();
-            }}
-            hidden={this.props.LastImage >= this.props.TotalImageCount}
-          >
-            Next {this.props.DisplayCount}
-
-          </button>
-        </section>
+        {/* {(images === '') ? '' : } */}
+        {images !== '' && (
+          
+          <section className="searchResults">
+          {this.props.title} 
+            {images}
+          </section>
+        )}
 
         <section>
           {this.state.imageDetails.title !== "" && (
@@ -166,10 +106,6 @@ class AlbumResults extends Component {
               classno={this.state.imageDetails.classno}
               dateofimage={this.state.imageDetails.dateofimage}
               showSimilarImages={this.props.showSimilarImages}
-              nextImageAccessionNo={this.state.imageDetails.AccessionNo}
-              prevImageAccessionNo={this.state.imageDetails.AccessionNo}
-              nextImage={this.nextImage}
-              prevImage={this.prevImage}
             />
           )
           }

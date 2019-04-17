@@ -20,6 +20,7 @@ class Albums extends Component {
 
     return (
       <section className="box searchResults">
+      <h2>Albums</h2>
         {Albums}
       </section>
     )

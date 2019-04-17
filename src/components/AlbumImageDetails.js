@@ -16,12 +16,7 @@ class AlbumImageDetails extends Component {
     return (
       <div className="box" onClick={() => {
         this.props.showImage(
-          this.props.AccessionNo,
-          this.props.title,
-          this.props.description,
-          this.props.area,
-          this.props.dateofimage,
-          this.props.classno
+          this.props.photograph
         );
       }}>
         <img src={imgSrcConfirmed} text={this.props.caption} width="100"
