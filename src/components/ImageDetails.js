@@ -17,7 +17,6 @@ class ImageDetails extends Component {
     imgSrcConfirmed = helpers.checkImageExists(imgSrc + this.props.AccessionNo + ".jpg");
 
     return (
-      // <section className="results">
       <div className="box" onClick={() => {
         this.props.showImage(
           this.props.AccessionNo,
@@ -50,7 +49,6 @@ class ImageDetails extends Component {
         </button> */}
         <p>{this.props.title}</p>
       </div>
-      // </section>
     );
   }
 }
