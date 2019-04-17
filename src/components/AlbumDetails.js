@@ -14,7 +14,7 @@ class AlbumDetails extends Component {
     return (
       <section className="box">
 
-        <img src={imgSrcConfirmed} text={this.props.title} width="100" 
+        <img src={imgSrcConfirmed} text={this.props.title} width="100%" 
         onClick={() => {
           this.props.showAlbums(
             this.props.albumidno,

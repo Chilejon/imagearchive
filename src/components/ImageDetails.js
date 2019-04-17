@@ -29,7 +29,7 @@ class ImageDetails extends Component {
         );
       }}>
 
-        <img src={imgSrcConfirmed} text={this.props.title} width="100"
+        <img src={imgSrcConfirmed} text={this.props.title} width="100%"
 
 
         />

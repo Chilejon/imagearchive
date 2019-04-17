@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import loading from "./../images/smLoading.gif";
+import loading from "./../images/loading.gif";
 import areas from "../data/areas.json";
 
 const getAreas = "http://interactive.stockport.gov.uk/siarestapi/v1/Getareas";
