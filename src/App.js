@@ -35,7 +35,8 @@ class App extends Component {
       Images: [],
       Albums: AlbumsData,
       AlbumImages: [],
-      AlbumTitle:'',
+      AlbumTitle: '',
+      ShowAlbums: false,
       areas: [],
       FirstImage: 0,
       LastImage: 6,
@@ -59,6 +60,7 @@ class App extends Component {
     this.search = this.search.bind(this);
     this.showSimilarImages = this.showSimilarImages.bind(this);
     this.showAlbums = this.showAlbums.bind(this);
+    this.displayAlbums = this.displayAlbums.bind(this);
     this.goBack = this.goBack.bind(this);
     this.goForward = this.goForward.bind(this);
   }
@@ -178,6 +180,15 @@ class App extends Component {
     });
   }
 
+  displayAlbums() {
+    
+    var showAlbumsState = this.state.ShowAlbums
+    showAlbumsState ? showAlbumsState = false : showAlbumsState = true
+    this.setState({
+      ShowAlbums: showAlbumsState 
+    });
+  }
+
   showAlbums(albumNo, albumTitle) {
     this.setState({
       AlbumImages: [],
@@ -220,7 +231,7 @@ class App extends Component {
     return (
       <div className="wrapper">
         <header class="box searchBox">
-          <Searchbox searchWhat={this.state.searchWhat} search={this.search} isLoading={this.state.isLoading} />
+          <Searchbox searchWhat={this.state.searchWhat} search={this.search} isLoading={this.state.isLoading} displayAlbums={this.displayAlbums}/>
         </header>
 
         {this.state.Images.length !== 0 && (
@@ -241,12 +252,16 @@ class App extends Component {
           </div>
         )}
 
-        <section>
-          <Albums Albums={this.state.Albums} showAlbums={this.showAlbums} />
-        </section>
-        <section>
-          <AlbumResults images={this.state.AlbumImages} title={this.state.AlbumTitle} showImage={this.state.showImage} />
-        </section>
+        {this.state.ShowAlbums && (
+          <div>
+            <section>
+              <Albums Albums={this.state.Albums} showAlbums={this.showAlbums} />
+            </section>
+            <section>
+              <AlbumResults images={this.state.AlbumImages} title={this.state.AlbumTitle} showImage={this.state.showImage} />
+            </section>
+          </div>
+        )}
       </div>
 
     )

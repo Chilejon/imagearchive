@@ -107,8 +107,19 @@ class Searchbox extends Component {
                   )}
 
               </td>
-            </tr>
+              <td>
+                <button
+                  className="Button"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    this.props.displayAlbums()
+                  }}
+                >
 
+                  Show/Hide Albums  
+                </button>
+              </td>
+            </tr>
           </table>
 
         </form>
