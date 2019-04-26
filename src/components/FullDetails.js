@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
+import helpers from "../utils/checkImage"
 
 const imgSrc = "http://interactive.stockport.gov.uk/stockportimagearchive/SIA/";
 
@@ -17,6 +18,10 @@ class FullDetails extends Component {
 
   render() {
     console.log(this.props);
+
+    var imgSrcConfirmed = imgSrc + this.props.AccessionNo + ".jpg";
+    imgSrcConfirmed = helpers.checkImageExists(imgSrc + this.props.AccessionNo + ".jpg");
+
     var nextImage
     if(this.props.nextImage !== undefined)
     {
@@ -40,14 +45,34 @@ class FullDetails extends Component {
         );
       }}>
       Prev </button>
-      
     }
+
+    console.log(this.props.allAreas)
+    var allAreas = this.props.allAreas
+    var areaText = "not found"
+
+    allAreas.forEach(area => {
+      if (area.ID === this.props.area)
+      {
+        areaText = area.Area1
+      }      
+    });
+    
+    // var areaText = allAreas.map(function(area){
+    //   return area[allAreas.Area1]
+
+    // }
+    // )
+    
+    //this.props.allAreas.where(x => x.id === this.props.area)
+
+    
     
     return (
       <section className="box fullDetails">
         <section className="box imagePicture">
           <img
-            src={imgSrc + this.props.AccessionNo + ".jpg"}
+            src={imgSrcConfirmed}
             text={this.props.title}
           />
         </section>
@@ -56,15 +81,12 @@ class FullDetails extends Component {
           {(prevImage === null) ? null : prevImage }
           {(nextImage === null) ? null : nextImage }
           
-          <p>{this.props.title}</p>
-          <p>{this.props.description}</p>
-          <p>
-            AccessionNo: {this.props.AccessionNo}
-          </p>
-          <p>  Area: {this.props.area} </p>
-          <p>Class: {this.props.classno}
-          </p>
-          <p>Date: {this.props.dateofimage}</p>
+          <h2>{this.props.title}</h2>
+          <h3>{this.props.description}</h3>
+          <p>Accession no: <strong>{this.props.AccessionNo}</strong></p>
+          <p>Area: <strong>{areaText}</strong> </p>
+          <p>Class: <strong>{this.props.classno}</strong></p>
+          <p>Date: <strong>{this.props.dateofimage}</strong></p>
 
           <button
             className="ShowBig"

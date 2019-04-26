@@ -10,6 +10,7 @@ import "./css/grid.css";
 import Results from "./components/Results";
 import Albums from "./components/Albums"
 import AlbumResults from "./components/AlbumResults"
+import areas from "./data/areas.json";
 //const getAreas = "http://interactive.stockport.gov.uk/siarestapi/v1/Getareas";
 
 //const API3 =
@@ -37,7 +38,7 @@ class App extends Component {
       AlbumImages: [],
       AlbumTitle: '',
       ShowAlbums: false,
-      areas: [],
+      areas: areas,
       FirstImage: 0,
       LastImage: 6,
       DisplayCount: 6,
@@ -243,7 +244,7 @@ class App extends Component {
             </section>
 
 
-            <Results images={this.state.Images} showSimilarImages={this.showSimilarImages} TotalImageCount={this.state.Images.length} DisplayCount={this.state.DisplayCount} FirstImage={this.state.FirstImage} LastImage={this.state.LastImage > this.state.Images.length ? this.state.Images.length : this.state.LastImage} goForward={this.goForward} goBack={this.goBack} showImage={this.state.showImage} />
+            <Results images={this.state.Images} showSimilarImages={this.showSimilarImages} TotalImageCount={this.state.Images.length} DisplayCount={this.state.DisplayCount} FirstImage={this.state.FirstImage} LastImage={this.state.LastImage > this.state.Images.length ? this.state.Images.length : this.state.LastImage} goForward={this.goForward} goBack={this.goBack} showImage={this.state.showImage} areas={this.state.areas} />
 
 
             {/* <section class="box fullDetails">

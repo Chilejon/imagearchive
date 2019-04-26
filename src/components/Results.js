@@ -172,6 +172,7 @@ class Results extends Component {
               prevImageAccessionNo={this.state.imageDetails.AccessionNo}
               nextImage={this.nextImage}
               prevImage={this.prevImage}
+              allAreas={this.props.areas}
             />
           )
           }
