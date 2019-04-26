@@ -57,17 +57,7 @@ class FullDetails extends Component {
         areaText = area.Area1
       }      
     });
-    
-    // var areaText = allAreas.map(function(area){
-    //   return area[allAreas.Area1]
-
-    // }
-    // )
-    
-    //this.props.allAreas.where(x => x.id === this.props.area)
-
-    
-    
+  
     return (
       <section className="box fullDetails">
         <section className="box imagePicture">
