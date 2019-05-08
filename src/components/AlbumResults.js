@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AlbumImageDetails from "./AlbumImageDetails";
 import FullDetails from "./FullDetails"
 
-const GetPhotoByID = "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByID?id=";
+const GetPhotoByID = "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByAccNo?id=";
 
 class AlbumResults extends Component {
   constructor(props, context) {
@@ -33,19 +33,20 @@ class AlbumResults extends Component {
   }
 
   showImage(photograph) {
-    //alert(searchTerm + " " + area + " " + paginationSize);
-    this.setState({
-      imageDetails: {
-        title: "",
-        description: "",
-        area: "",
-        classno: "",
-        dateofimage: "",
-        AccessionNo: ""
-      }
-    });
+
+    // this.setState({
+    //   imageDetails: {
+    //     title: "",
+    //     description: "",
+    //     area: "",
+    //     classno: "",
+    //     dateofimage: "",
+    //     AccessionNo: ""
+    //   }
+    // });
     var apiLink = "";
     apiLink = GetPhotoByID + photograph;
+    console.log(apiLink);
     fetch(apiLink)
       .then(response => response.json())
       .then(json => {
@@ -54,15 +55,19 @@ class AlbumResults extends Component {
             imageDetails: json,
             searchTerm: photograph,
             isLoading: false
-          });
+          },
+            () => console.log(this.state))
         }
-        else {
-          this.setState({
-            Images: [],
-            searchTerm: photograph,
-            isLoading: false
-          })
-        };
+        // else {
+        //   this.setState({
+        //     imageDetails:
+        //       {}
+        //     ,
+        //     searchTerm: photograph,
+        //     isLoading: false
+        //   },
+        //     () => console.log(this.state))
+        // };
       }
       )
   }
@@ -74,39 +79,41 @@ class AlbumResults extends Component {
         <AlbumImageDetails
           caption={Images.caption}
           photograph={Images.photograph.trim()}
-          // description={Images.description.trim()}
-          // area={Images.area}
-          // dateofimage={Images.dateofimage.trim()}
-          // classno={Images.classno.trim()}
-          // getImage={this.getImage}
           showImage={this.showImage}
         />
       );
     }
     )
-    console.log(this.props.title)
+
+    if (this.state.imageDetails.length > 0) {
+
+      console.log(this.state.imageDetails[0].title)
+    }
+
     return (
+
       <div>
         {/* {(images === '') ? '' : } */}
         {images !== '' && (
-          
+
           <section className="box searchResults">
-          
-          <h2>{this.props.title}</h2> 
+
+            <h2>{this.props.title}</h2>
             {images}
           </section>
         )}
 
         <section>
-          {this.state.imageDetails.title !== "" && (
+          {this.state.imageDetails.length > 0 && (
             <FullDetails
-              title={this.state.imageDetails.title}
-              description={this.state.imageDetails.description}
-              area={this.state.imageDetails.area}
-              AccessionNo={this.state.imageDetails.AccessionNo.trim()}
-              classno={this.state.imageDetails.classno}
-              dateofimage={this.state.imageDetails.dateofimage}
+              title={this.state.imageDetails[0].title}
+              description={this.state.imageDetails[0].description}
+              area={this.state.imageDetails[0].area}
+              AccessionNo={this.state.imageDetails[0].AccessionNo.trim()}
+              classno={this.state.imageDetails[0].classno}
+              dateofimage={this.state.imageDetails[0].dateofimage}
               showSimilarImages={this.props.showSimilarImages}
+              allAreas={this.props.areas}
             />
           )
           }

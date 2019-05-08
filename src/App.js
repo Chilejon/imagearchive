@@ -13,8 +13,7 @@ import AlbumResults from "./components/AlbumResults"
 import areas from "./data/areas.json";
 //const getAreas = "http://interactive.stockport.gov.uk/siarestapi/v1/Getareas";
 
-//const API3 =
-//  "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByID?id=3";
+//const API3 = "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByAccNo?id=3";
 const GetPhotosSearchTitle =
   "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByTitle/?term=";
 //const GetPhotoByID =
@@ -103,6 +102,7 @@ class App extends Component {
     }
 
     //alert(apiLink);
+    console.log(apiLink)
     fetch(apiLink)
       .then(response => response.json())
       .then(json => {
@@ -259,7 +259,7 @@ class App extends Component {
               <Albums Albums={this.state.Albums} showAlbums={this.showAlbums} />
             </section>
             <section>
-              <AlbumResults images={this.state.AlbumImages} title={this.state.AlbumTitle} showImage={this.state.showImage} />
+              <AlbumResults images={this.state.AlbumImages} title={this.state.AlbumTitle} showImage={this.state.showImage} areas={this.state.areas} />
             </section>
           </div>
         )}

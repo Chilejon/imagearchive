@@ -13,7 +13,7 @@ class Albums extends Component {
     var Albums = this.props.Albums.map(Albums => {
       if (Albums.status === 'Live') {
         return (
-          <AlbumDetails AccessionNo={Albums.albumcover} title={Albums.albumtitle} albumidno={Albums.albumidno} showAlbums={this.props.showAlbums} />
+          <AlbumDetails AccessionNo={Albums.albumcover} title={Albums.albumtitle} albumidno={Albums.albumidno} showAlbums={this.props.showAlbums} areas={this.props.areas} />
         );
       }
     })
