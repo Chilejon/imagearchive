@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AlbumImageDetails from "./AlbumImageDetails";
 import FullDetails from "./FullDetails"
 
-const GetPhotoByID = "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByAccNo?id=";
+const GetPhotoByID = "https://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByAccNo?id=";
 
 class AlbumResults extends Component {
   constructor(props, context) {

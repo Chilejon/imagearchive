@@ -10,7 +10,7 @@ const helpers = {
     http.send();
 
     if (http.status === 404) {
-      return "http://www.wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg";
+      return "https://www.wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg";
     } else {
       return image_url;
     }

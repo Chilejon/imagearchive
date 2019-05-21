@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 const imgSrc =
-  "http://interactive.stockport.gov.uk/stockportimagearchive/SIA/thumbnails/";
+  "https://interactive.stockport.gov.uk/stockportimagearchive/SIA/thumbnails/";
 
 class AlbumImageDetails extends Component {
   constructor(props, context) {

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import loading from "./../images/loading.gif";
+import loadingTransp from "./../images/loadingTransp.gif";
 import areas from "../data/areas.json";
 
-const getAreas = "http://interactive.stockport.gov.uk/siarestapi/v1/Getareas";
+const getAreas = "https://interactive.stockport.gov.uk/siarestapi/v1/Getareas";
 
 class Searchbox extends Component {
   constructor(props, context) {
@@ -36,9 +36,11 @@ class Searchbox extends Component {
     //console.log(this.state.areas);
     return (
       this.state.areas.length > 0 && (
+        <fragment>
+        <h1 className="textCentered">Stockport Image Archive</h1>
         <form onSubmit={this.searchTitle}>
           <table>
-            <tr><th>Search term</th><th>fields</th><th>Area</th><th></th></tr>
+            <tr><th>Search</th><th>Criteria</th><th>Locations</th><th></th></tr>
             <tr>
               <td>          <input
                 id="title"
@@ -60,7 +62,7 @@ class Searchbox extends Component {
               </td>
               <td>
                 <select id="Areas" ref={input => (this.area = input)}>
-                  <option value="">All</option>
+                  <option value="">All locations</option>
                   {this.state.areas.map(dd => (
                     <option key={dd.ID} value={dd.ID}>
                       {dd.Area1}
@@ -69,26 +71,9 @@ class Searchbox extends Component {
                 </select>
 
               </td>
-              {/* <td>
-                <select
-                  id="PaginationSize"
-                  ref={input => (this.PaginationSize = input)}
-                >
-                  <option key="5" value="5">
-                    5
-            </option>
-                  <option key="10" value="10">
-                    10
-            </option>
-                  <option key="20" value="20">
-                    20
-            </option>
-                </select>
-
-              </td> */}
               <td>
                 {this.props.isLoading ? (
-                  <span className="loading"><img src={loading} alt={"loading"} width="20" height="20" /></span>
+                <img src={loadingTransp} alt={"loading"} width="35" height="35" />
                 ) : (
                     <button
                       className="Button"
@@ -105,24 +90,23 @@ class Searchbox extends Component {
                       Search
             </button>
                   )}
+                &nbsp;&nbsp;&nbsp;&nbsp;
 
-              </td>
-              <td>
                 <button
-                  className="Button"
+                  className="albumButton"
                   onClick={(e) => {
                     e.preventDefault()
                     this.props.displayAlbums()
                   }}
-                >
-
-                  Show/Hide Albums  
+               >
+                  Albums (show/hide) 
                 </button>
               </td>
             </tr>
           </table>
-
         </form>
+        <h2 className="textCentered">{this.props.NoResults}</h2>
+        </fragment>
       )
     );
   }

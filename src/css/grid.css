@@ -2,7 +2,7 @@ body {
     margin: 40px;
   }
   
-  .searchString {
+      .searchString {
           grid-area: searchString;
       }
   
@@ -52,6 +52,11 @@ body {
           "fullDetails"
           "albums";
       }
+      }
+
+      .textCentered {
+        text-align: center;
+        font-weight: bold;
       }
   
       @media only screen and (min-width: 1000px)   {
@@ -128,13 +133,6 @@ body {
     border-radius: 20px;
     width: 100%;
   }
-  
-  .loading{
-    background-color: #fff;
-    width: 20px;
-    padding: 10px;
-  }
-
   .searchResults {
     margin-top:10px;
     display: grid;

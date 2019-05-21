@@ -15,16 +15,18 @@ import areas from "./data/areas.json";
 
 //const API3 = "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByAccNo?id=3";
 const GetPhotosSearchTitle =
-  "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByTitle/?term=";
+  "https://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByTitle/?term=";
 //const GetPhotoByID =
 //  "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByID?id=";
 const GetPhotosSearchAll =
-  "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByTerm?term=";
+  "https://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByTerm?term=";
 const GetPhotosByTitleAndArea =
-  "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByTitleArea/?term=";
-const GetPhotosByClassNo = "http://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByClassNo/?id=";
+  "https://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByTitleArea/?term=";
+const GetPhotosByTermAndArea =
+  "https://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByTermArea/?term=";
+const GetPhotosByClassNo = "https://interactive.stockport.gov.uk/siarestapi/v1/GetPhotosByClassNo/?id=";
 
-const GetPhotosByAlbumNo = "http://interactive.stockport.gov.uk/siarestapi/v1/GetAlbumPhoto/?id="
+const GetPhotosByAlbumNo = "https://interactive.stockport.gov.uk/siarestapi/v1/GetAlbumPhoto/?id="
 
 
 class App extends Component {
@@ -41,6 +43,7 @@ class App extends Component {
       FirstImage: 0,
       LastImage: 6,
       DisplayCount: 6,
+      NoResults: '',
       imageDetails: {
         title: "",
         description: "",
@@ -52,8 +55,7 @@ class App extends Component {
       searchTerm: "dog",
       searchWhat: [
         { id: "title", value: "Title" },
-        { id: "all", value: "All" },
-        { id: "allarea", value: "All/Area" }
+        { id: "all", value: "All fields" }
       ],
       isLoading: false
     };
@@ -66,12 +68,17 @@ class App extends Component {
   }
 
   search(searchTerm, area, searchWhat) {
-    //alert(searchTerm + " " + area + " " + paginationSize);
+    if (searchTerm.trim() !== "") 
+    {    
     this.setState({
       Images: [],
       isLoading: true,
       //DisplayCount: paginationSize.value,
       searchTerm: '',
+      FirstImage: 0,
+      LastImage: 6,
+      DisplayCount: 6,
+      NoResults: '',
       imageDetails: {
         title: "",
         description: "",
@@ -87,13 +94,17 @@ class App extends Component {
     var apiLink = "";
     switch (searchWhat) {
       case "all":
-        apiLink = GetPhotosSearchAll + searchTerm;
+        if (area === '')
+        {
+          apiLink = GetPhotosSearchAll + searchTerm;
+        }
+        else
+        {
+          apiLink = GetPhotosByTermAndArea + searchTerm + "&area=" + area;
+        }
         break;
       case "title":
         apiLink = GetPhotosSearchTitle + searchTerm;
-        break;
-      case "allarea":
-        apiLink = GetPhotosByTitleAndArea + searchTerm + "&area=" + area;
         break;
     }
 
@@ -102,7 +113,7 @@ class App extends Component {
     }
 
     //alert(apiLink);
-    console.log(apiLink)
+    //console.log(apiLink)
     fetch(apiLink)
       .then(response => response.json())
       .then(json => {
@@ -118,11 +129,21 @@ class App extends Component {
           this.setState({
             Images: [],
             searchTerm: searchTerm,
-            isLoading: false
+            isLoading: false,
+            NoResults: 'No results found for : ' + searchTerm
           })
         };
       }
       )
+    }
+    else {
+      this.setState({
+        Images: [],
+        searchTerm: searchTerm,
+        isLoading: false,
+        NoResults: 'Enter a search term'
+      })
+    };
   }
 
   showSimilarImages(classno) {
@@ -232,15 +253,15 @@ class App extends Component {
     return (
       <div className="wrapper">
         <header class="box searchBox">
-          <Searchbox searchWhat={this.state.searchWhat} search={this.search} isLoading={this.state.isLoading} displayAlbums={this.displayAlbums}/>
+          <Searchbox searchWhat={this.state.searchWhat} search={this.search} isLoading={this.state.isLoading} displayAlbums={this.displayAlbums} NoResults={this.state.NoResults}/>
         </header>
 
         {this.state.Images.length !== 0 && (
           <div>
             <section className="box searchString" >
-              <p>Search term: '{this.state.searchTerm}'.
-              Showing images '{this.state.FirstImage + 1}' to '{this.state.LastImage > this.state.Images.length ? this.state.Images.length : this.state.LastImage}' of found {this.state.Images.length} images.
-              </p>
+              <div className="textCentered">Search term: '{this.state.searchTerm}'.
+              Showing images '{this.state.FirstImage + 1}' to '{this.state.LastImage > this.state.Images.length ? this.state.Images.length : this.state.LastImage}' of {this.state.Images.length} images.
+              </div>
             </section>
 
 

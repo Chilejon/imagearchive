@@ -128,11 +128,6 @@ class Results extends Component {
       }
       )
     }
-    else {
-      return (
-        <p>No images for that search term</p>
-      )
-    }
     return (
       <div>
         <section className="box searchResults">

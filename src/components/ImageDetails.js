@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import helpers from "../utils/checkImage"
 
 const imgSrc =
-  "http://interactive.stockport.gov.uk/stockportimagearchive/SIA/thumbnails/";
+  "https://interactive.stockport.gov.uk/stockportimagearchive/SIA/thumbnails/";
 
 class ImageDetails extends Component {
   constructor(props, context) {

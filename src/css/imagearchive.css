@@ -78,6 +78,14 @@ body {
   border-radius: 10px;
 }
 
+.albumButton {
+    background-color: #055c58;
+    color: white;
+    height: 52px;
+    border: none;
+    border-radius: 10px;
+}
+
 .ShowBig {
   background-color: black;
   color: white;
@@ -166,10 +174,4 @@ body {
 
 .imagePicture img{
   border-radius: 20px;
-}
-
-.loading{
-  background-color: #fff;
-  width: 20px;
-  padding: 10px;
 }

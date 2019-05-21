@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import helpers from "../utils/checkImage"
 
-const imgSrc = "http://interactive.stockport.gov.uk/stockportimagearchive/SIA/";
+const imgSrc = "https://interactive.stockport.gov.uk/stockportimagearchive/SIA/";
 
 class FullDetails extends Component {
   constructor(props, context) {
