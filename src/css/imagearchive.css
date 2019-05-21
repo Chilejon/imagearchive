@@ -47,7 +47,8 @@ body {
 .nextButton{
   align-self: flex-start;
   margin-left: 20px;
-  cursor: pointer;  
+  cursor: pointer;
+  font-size: 16pt;  
 }
 
 .nextButton:disabled{
@@ -59,6 +60,7 @@ body {
 .prevButton{
   align-self: flex-start;
   cursor: pointer;
+  font-size: 16pt;
 }
 .prevButton:disabled{
   background-color: #fff;
@@ -76,6 +78,7 @@ body {
   height: 52px;
   border: none;
   border-radius: 10px;
+  font-size: 16pt;
 }
 
 .albumButton {
@@ -84,6 +87,7 @@ body {
     height: 52px;
     border: none;
     border-radius: 10px;
+    font-size: 16pt;
 }
 
 .ShowBig {
@@ -145,7 +149,7 @@ body {
   color: #fff;
   border-radius: 5px;
   padding: 20px;
-  font-size: 100%;
+  
 }
 
 

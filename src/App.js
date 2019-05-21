@@ -68,7 +68,7 @@ class App extends Component {
   }
 
   search(searchTerm, area, searchWhat) {
-    if (searchTerm.trim() !== "") 
+    if (searchTerm.trim() !== "" && searchTerm.trim().length > 1) 
     {    
     this.setState({
       Images: [],
@@ -79,6 +79,9 @@ class App extends Component {
       LastImage: 6,
       DisplayCount: 6,
       NoResults: '',
+      AlbumImages: [],
+      AlbumTitle: '',
+      ShowAlbums: false,
       imageDetails: {
         title: "",
         description: "",
@@ -137,11 +140,19 @@ class App extends Component {
       )
     }
     else {
+      var NoResultsMessage
+      if (searchTerm.trim().length < 2)
+      {
+        NoResultsMessage = ""
+      }
+
+
+
       this.setState({
         Images: [],
         searchTerm: searchTerm,
         isLoading: false,
-        NoResults: 'Enter a search term'
+        NoResults: NoResultsMessage
       })
     };
   }
@@ -150,6 +161,8 @@ class App extends Component {
     this.setState({
       Images: [],
       isLoading: true,
+      FirstImage: 0,
+      LastImage: 6,
       DisplayCount: 6,
       imageDetails: {
         title: "",
@@ -175,8 +188,11 @@ class App extends Component {
       .then(json => {
         //alert(json);
         this.setState({
+          FirstImage: 0,
+          LastImage: 6,
+          DisplayCount: 6,
           Images: json,
-          searchTerm: classno,
+          searchTerm: "Class no: " + classno,
           isLoading: false
         });
       });
@@ -207,7 +223,16 @@ class App extends Component {
     var showAlbumsState = this.state.ShowAlbums
     showAlbumsState ? showAlbumsState = false : showAlbumsState = true
     this.setState({
-      ShowAlbums: showAlbumsState 
+      ShowAlbums: showAlbumsState,
+      imageDetails: {
+        title: "",
+        description: "",
+        area: "",
+        classno: "",
+        dateofimage: "",
+        AccessionNo: ""
+      },
+      Images: [] 
     });
   }
 
@@ -260,17 +285,13 @@ class App extends Component {
           <div>
             <section className="box searchString" >
               <div className="textCentered">Search term: '{this.state.searchTerm}'.
-              Showing images '{this.state.FirstImage + 1}' to '{this.state.LastImage > this.state.Images.length ? this.state.Images.length : this.state.LastImage}' of {this.state.Images.length} images.
+              Showing images '{this.state.FirstImage + 1}' to '{this.state.LastImage > this.state.Images.length ? this.state.Images.length : this.state.LastImage}' of {this.state.Images.length} images
               </div>
             </section>
 
 
             <Results images={this.state.Images} showSimilarImages={this.showSimilarImages} TotalImageCount={this.state.Images.length} DisplayCount={this.state.DisplayCount} FirstImage={this.state.FirstImage} LastImage={this.state.LastImage > this.state.Images.length ? this.state.Images.length : this.state.LastImage} goForward={this.goForward} goBack={this.goBack} showImage={this.state.showImage} areas={this.state.areas} />
 
-
-            {/* <section class="box fullDetails">
-            Full details
-        </section> */}
           </div>
         )}
 
