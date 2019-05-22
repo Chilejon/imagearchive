@@ -59,9 +59,16 @@ body {
       }
       }
 
+      .titleText {
+        text-align: center;
+        font-weight: bold;
+        color: black;
+      }
+
       .textCentered {
         text-align: center;
         font-weight: bold;
+        color: white;
       }
   
       @media only screen and (min-width: 1000px)   {
@@ -97,6 +104,8 @@ body {
   .albums {
     background-color: #999;
     text-align: center;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
   
   .searchBox input{
@@ -170,4 +179,9 @@ body {
     grid-gap: 2%;
     grid-template-columns: repeat(8, 10%);
     cursor: pointer;
+  }
+
+  table, th{
+    text-align: left;
+    color: black;
   }

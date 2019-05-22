@@ -55,6 +55,7 @@ body {
   background-color: #fff;
   color: #cccccc;
   cursor: default;
+  visibility: hidden;
 }
 
 .prevButton{
@@ -66,6 +67,7 @@ body {
   background-color: #fff;
   color: #cccccc;
   cursor: default;
+  visibility: hidden;
 }
 
 .results img {
@@ -93,12 +95,11 @@ body {
 .ShowBig {
   background-color: black;
   color: white;
-  height: 50px;
   border: none;
-  height:20px;
   cursor:pointer;
   border-radius: 5px;
   margin-top: 2px;
+  font-size: 16pt;
 }
 
 .bigImage {
@@ -188,9 +189,9 @@ body {
 }
 
 .smallText {
-  font-size: 6pt;
+  font-size: 10pt;
 }
 
 .SIAHeading {
-  color: #055c58;
+  color: #000000;
 }

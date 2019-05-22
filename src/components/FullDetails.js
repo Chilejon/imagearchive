@@ -17,7 +17,7 @@ class FullDetails extends Component {
   }
 
   render() {
-    console.log(this.props);
+    //console.log(this.props);
 
     var imgSrcConfirmed = imgSrc + this.props.AccessionNo + ".jpg";
     imgSrcConfirmed = helpers.checkImageExists(imgSrc + this.props.AccessionNo + ".jpg");
@@ -31,7 +31,7 @@ class FullDetails extends Component {
           this.props.AccessionNo
         );
       }}>
-      Next </button>
+      Next &gt; </button>
     }
 
     var prevImage
@@ -44,10 +44,9 @@ class FullDetails extends Component {
           this.props.AccessionNo
         );
       }}>
-      Prev </button>
+      &lt; Prev </button>
     }
 
-    console.log(this.props.allAreas)
     var allAreas = this.props.allAreas
     var areaText = "not found"
 
@@ -69,6 +68,7 @@ class FullDetails extends Component {
         <section className="box">
           
           {(prevImage === null) ? null : prevImage }
+          &nbsp;&nbsp;&nbsp;
           {(nextImage === null) ? null : nextImage }
           
           <h2>{this.props.title}</h2>
@@ -90,7 +90,7 @@ class FullDetails extends Component {
                 this.props.classno
               );
             }}
-          >Similar images</button>
+          >Show similar images</button>
         </section>
       </section>
     );

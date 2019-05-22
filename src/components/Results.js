@@ -146,7 +146,7 @@ class Results extends Component {
             }}
             disabled={this.props.FirstImage === 0}
           >
-            Prev {this.props.DisplayCount}
+           &lt; Prev {this.props.DisplayCount}
           </button>
           {images}
           <button
@@ -156,7 +156,7 @@ class Results extends Component {
             }}
             disabled={this.props.LastImage >= this.props.TotalImageCount}
           >
-            Next {this.props.DisplayCount}
+           Next {this.props.DisplayCount} &gt; 
 
           </button>
         </section>
