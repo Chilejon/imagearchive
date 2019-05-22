@@ -30,7 +30,7 @@ class Results extends Component {
     this.prevImage = this.prevImage.bind(this);
   }
 
-  showImage(AccessionNo, title, description, area, dateofimage, classno) {
+  showImage(AccessionNo, title, description, area, dateofimage, classno, Photographer) {
     console.log(AccessionNo + " " + title)
     this.setState({
       imageDetails: {
@@ -39,7 +39,8 @@ class Results extends Component {
         description: description,
         area: area,
         classno: classno,
-        dateofimage: dateofimage
+        dateofimage: dateofimage,
+        Photographer: Photographer
       }
     });
     // window.scrollTo(0, 0);
@@ -66,7 +67,8 @@ class Results extends Component {
             description: array.description,
             area: array.area,
             classno: array.classno,
-            dateofimage: array.dateofimage
+            dateofimage: array.dateofimage,
+            Photographer: array.Photographer
           }
         }
         count = count + 1
@@ -99,7 +101,8 @@ class Results extends Component {
             description: array.description,
             area: array.area,
             classno: array.classno,
-            dateofimage: array.dateofimage
+            dateofimage: array.dateofimage,
+            Photographer: array.Photographer
           }
         }
         count = count + 1
@@ -121,6 +124,7 @@ class Results extends Component {
             area={Images.area}
             dateofimage={Images.dateofimage.trim()}
             classno={Images.classno.trim()}
+            Photographer={Images.Photographer.trim()}
             getImage={this.getImage}
             showImage={this.showImage}
           />
@@ -162,6 +166,7 @@ class Results extends Component {
               AccessionNo={this.state.imageDetails.AccessionNo.trim()}
               classno={this.state.imageDetails.classno}
               dateofimage={this.state.imageDetails.dateofimage}
+              Photographer={this.state.imageDetails.Photographer}
               showSimilarImages={this.props.showSimilarImages}
               nextImageAccessionNo={this.state.imageDetails.AccessionNo}
               prevImageAccessionNo={this.state.imageDetails.AccessionNo}

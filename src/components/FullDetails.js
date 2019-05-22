@@ -77,7 +77,7 @@ class FullDetails extends Component {
           <p>Area: <strong>{areaText}</strong> </p>
           <p>Class: <strong>{this.props.classno}</strong></p>
           <p>Date: <strong>{this.props.dateofimage}</strong></p>
-
+          <p>Photographer: <strong>{this.props.Photographer}</strong></p>
           <button
             className="ShowBig"
             onClick={() => {

@@ -24,7 +24,8 @@ class ImageDetails extends Component {
           this.props.description,
           this.props.area,
           this.props.dateofimage,
-          this.props.classno
+          this.props.classno,
+          this.props.Photographer
         );
       }}>
 

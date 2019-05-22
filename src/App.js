@@ -50,7 +50,8 @@ class App extends Component {
         area: "",
         classno: "",
         dateofimage: "",
-        AccessionNo: ""
+        AccessionNo: "",
+        Photographer: ""
       },
       searchTerm: "dog",
       searchWhat: [
@@ -88,7 +89,8 @@ class App extends Component {
         area: "",
         classno: "",
         dateofimage: "",
-        AccessionNo: ""
+        AccessionNo: "",
+        Photographer: ""
       }
     });
     var apiLink = "";
@@ -170,7 +172,8 @@ class App extends Component {
         area: "",
         classno: "",
         dateofimage: "",
-        AccessionNo: ""
+        AccessionNo: "",
+        Photographer: ""
       },
       searchTerm: ''
     });
@@ -230,7 +233,8 @@ class App extends Component {
         area: "",
         classno: "",
         dateofimage: "",
-        AccessionNo: ""
+        AccessionNo: "",
+        Photographer: ""
       },
       Images: [] 
     });
@@ -248,7 +252,8 @@ class App extends Component {
         area: "",
         classno: "",
         dateofimage: "",
-        AccessionNo: ""
+        AccessionNo: "",
+        Photographer: ""
       },
       searchTerm: ''
     });

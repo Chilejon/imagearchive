@@ -112,6 +112,7 @@ class AlbumResults extends Component {
               AccessionNo={this.state.imageDetails[0].AccessionNo.trim()}
               classno={this.state.imageDetails[0].classno}
               dateofimage={this.state.imageDetails[0].dateofimage}
+              Photographer={this.state.imageDetails[0].Photographer}
               showSimilarImages={this.props.showSimilarImages}
               allAreas={this.props.areas}
             />
