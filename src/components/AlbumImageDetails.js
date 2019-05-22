@@ -21,7 +21,7 @@ class AlbumImageDetails extends Component {
       }}>
         <img src={imgSrcConfirmed} text={this.props.caption} width="100"
         />
-        <p>{this.props.caption}</p>
+        <p className="smallText">{this.props.caption}</p>
       </div>
     );
   }

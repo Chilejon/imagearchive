@@ -37,75 +37,77 @@ class Searchbox extends Component {
     return (
       this.state.areas.length > 0 && (
         <fragment>
-        <h1 className="textCentered">Stockport Image Archive</h1>
-        <form onSubmit={this.searchTitle}>
-          <table>
-            <tr><th>Search</th><th>Criteria</th><th>Locations</th><th></th></tr>
-            <tr>
-              <td>          <input
-                id="title"
-                ref={title => (this.title = title)}
-                required
-                size="16"
-                value={this.state.input}
-                onChange={this.onChange}
-              />
-              </td>
-              <td>
-                <select id="searchWhat" ref={input => (this.searchWhat = input)}>
-                  {this.props.searchWhat.map(dd => (
-                    <option key={dd.id} value={dd.id}>
-                      {dd.value}
-                    </option>
-                  ))}
-                </select>
-              </td>
-              <td>
-                <select id="Areas" ref={input => (this.area = input)}>
-                  <option value="">All locations</option>
-                  {this.state.areas.map(dd => (
-                    <option key={dd.ID} value={dd.ID}>
-                      {dd.Area1}
-                    </option>
-                  ))}
-                </select>
+          <h1 className="textCentered"><span className="SIAHeading">S</span>tockport <span className="SIAHeading">I</span>mage <span className="SIAHeading">A</span>rchive</h1>
+          <form onSubmit={this.searchTitle} className="textCentered">
+            <table>
+              <tr><th>Search</th><th>Criteria</th><th>Locations</th><th></th><th></th></tr>
+              <tr>
+                <td>          <input
+                  id="title"
+                  ref={title => (this.title = title)}
+                  required
+                  size="16"
+                  value={this.state.input}
+                  onChange={this.onChange}
+                />
+                </td>
+                <td>
+                  <select id="searchWhat" ref={input => (this.searchWhat = input)}>
+                    {this.props.searchWhat.map(dd => (
+                      <option key={dd.id} value={dd.id}>
+                        {dd.value}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+                <td>
+                  <select id="Areas" ref={input => (this.area = input)}>
+                    <option value="">All locations</option>
+                    {this.state.areas.map(dd => (
+                      <option key={dd.ID} value={dd.ID}>
+                        {dd.Area1}
+                      </option>
+                    ))}
+                  </select>
 
-              </td>
-              <td>
-                {this.props.isLoading ? (
-                <img src={loadingTransp} alt={"loading"} width="35" height="35" />
-                ) : (
-                    <button
-                      className="Button"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        this.setState({ input: '' })
-                        this.props.search(
-                          this.title.value,
-                          this.area.value,
-                          this.searchWhat.value
-                        );
-                      }}
-                    >
-                      Search
+                </td>
+                <td>
+                  {this.props.isLoading ? (
+                    <img src={loadingTransp} alt={"loading"} width="35" height="35" />
+                  ) : (
+                      <button
+                        className="Button"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          this.setState({ input: '' })
+                          this.props.search(
+                            this.title.value,
+                            this.area.value,
+                            this.searchWhat.value
+                          );
+                        }}
+                      >
+                        Search
             </button>
-                  )}
-                &nbsp;&nbsp;&nbsp;&nbsp;
-
-                <button
-                  className="albumButton"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    this.props.displayAlbums()
-                  }}
-               >
-                  Albums (show/hide) 
+                    )}
+                </td>
+                <td>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <button
+                    className="albumButton"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      this.props.displayAlbums()
+                    }}
+                  >
+                    Albums (show/hide)
                 </button>
-              </td>
-            </tr>
-          </table>
-        </form>
-        <h2 className="textCentered">{this.props.NoResults}</h2>
+
+                </td>
+              </tr>
+            </table>
+          </form>
+          <h2 className="textCentered">{this.props.NoResults}</h2>
         </fragment>
       )
     );

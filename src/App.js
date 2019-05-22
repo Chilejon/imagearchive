@@ -51,7 +51,8 @@ class App extends Component {
         classno: "",
         dateofimage: "",
         AccessionNo: "",
-        Photographer: ""
+        Photographer: "",
+        availabletobuy: ""
       },
       searchTerm: "dog",
       searchWhat: [
@@ -69,7 +70,7 @@ class App extends Component {
   }
 
   search(searchTerm, area, searchWhat) {
-    if (searchTerm.trim() !== "" && searchTerm.trim().length > 1) 
+    if (searchTerm !== "" && searchTerm.trim().length > 1) 
     {    
     this.setState({
       Images: [],
@@ -90,7 +91,8 @@ class App extends Component {
         classno: "",
         dateofimage: "",
         AccessionNo: "",
-        Photographer: ""
+        Photographer: "",
+        availabletobuy: ""        
       }
     });
     var apiLink = "";
@@ -173,7 +175,8 @@ class App extends Component {
         classno: "",
         dateofimage: "",
         AccessionNo: "",
-        Photographer: ""
+        Photographer: "",
+        availabletobuy: ""
       },
       searchTerm: ''
     });
@@ -234,7 +237,8 @@ class App extends Component {
         classno: "",
         dateofimage: "",
         AccessionNo: "",
-        Photographer: ""
+        Photographer: "",
+        availabletobuy: ""
       },
       Images: [] 
     });
@@ -253,7 +257,8 @@ class App extends Component {
         classno: "",
         dateofimage: "",
         AccessionNo: "",
-        Photographer: ""
+        Photographer: "",
+        availabletobuy: ""
       },
       searchTerm: ''
     });

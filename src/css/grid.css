@@ -1,5 +1,10 @@
 body {
     margin: 40px;
+    text-align: center;
+  }
+
+  form {
+    display: inline-block;
   }
   
       .searchString {
@@ -79,6 +84,7 @@ body {
     color: #fff;
     border-radius: 5px;
     padding: 10px;
+    text-align: left;
     /*font-size: 100%;*/
   }
 
@@ -90,6 +96,7 @@ body {
   .searchBox,
   .albums {
     background-color: #999;
+    text-align: center;
   }
   
   .searchBox input{
@@ -107,10 +114,10 @@ body {
     border-radius: 10px;
   }
   
-
   .searchResults {
     background-color: #ccc;
     color: #444;
+    padding-bottom: 40px;
   }
 
   .bigImageBorder img {

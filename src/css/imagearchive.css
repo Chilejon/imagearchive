@@ -152,6 +152,13 @@ body {
   
 }
 
+.box a {
+  color: white;
+}
+
+.box a:visited {
+  color: white;
+}
 
 
 .search,
@@ -178,4 +185,12 @@ body {
 
 .imagePicture img{
   border-radius: 20px;
+}
+
+.smallText {
+  font-size: 6pt;
+}
+
+.SIAHeading {
+  color: #055c58;
 }

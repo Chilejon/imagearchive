@@ -113,6 +113,7 @@ class AlbumResults extends Component {
               classno={this.state.imageDetails[0].classno}
               dateofimage={this.state.imageDetails[0].dateofimage}
               Photographer={this.state.imageDetails[0].Photographer}
+              availabletobuy={this.state.imageDetails[0].availabletobuy}
               showSimilarImages={this.props.showSimilarImages}
               allAreas={this.props.areas}
             />

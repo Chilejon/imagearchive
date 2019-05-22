@@ -30,7 +30,7 @@ class Results extends Component {
     this.prevImage = this.prevImage.bind(this);
   }
 
-  showImage(AccessionNo, title, description, area, dateofimage, classno, Photographer) {
+  showImage(AccessionNo, title, description, area, dateofimage, classno, Photographer, availabletobuy) {
     console.log(AccessionNo + " " + title)
     this.setState({
       imageDetails: {
@@ -40,7 +40,8 @@ class Results extends Component {
         area: area,
         classno: classno,
         dateofimage: dateofimage,
-        Photographer: Photographer
+        Photographer: Photographer,
+        availabletobuy: availabletobuy
       }
     });
     // window.scrollTo(0, 0);
@@ -68,7 +69,8 @@ class Results extends Component {
             area: array.area,
             classno: array.classno,
             dateofimage: array.dateofimage,
-            Photographer: array.Photographer
+            Photographer: array.Photographer,
+            availabletobuy: array.availabletobuy
           }
         }
         count = count + 1
@@ -102,7 +104,8 @@ class Results extends Component {
             area: array.area,
             classno: array.classno,
             dateofimage: array.dateofimage,
-            Photographer: array.Photographer
+            Photographer: array.Photographer,
+            availabletobuy: array.availabletobuy
           }
         }
         count = count + 1
@@ -125,6 +128,7 @@ class Results extends Component {
             dateofimage={Images.dateofimage.trim()}
             classno={Images.classno.trim()}
             Photographer={Images.Photographer.trim()}
+            availabletobuy={Images.availabletobuy}
             getImage={this.getImage}
             showImage={this.showImage}
           />
@@ -167,6 +171,7 @@ class Results extends Component {
               classno={this.state.imageDetails.classno}
               dateofimage={this.state.imageDetails.dateofimage}
               Photographer={this.state.imageDetails.Photographer}
+              availabletobuy={this.state.imageDetails.availabletobuy}
               showSimilarImages={this.props.showSimilarImages}
               nextImageAccessionNo={this.state.imageDetails.AccessionNo}
               prevImageAccessionNo={this.state.imageDetails.AccessionNo}

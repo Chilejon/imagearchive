@@ -78,6 +78,11 @@ class FullDetails extends Component {
           <p>Class: <strong>{this.props.classno}</strong></p>
           <p>Date: <strong>{this.props.dateofimage}</strong></p>
           <p>Photographer: <strong>{this.props.Photographer}</strong></p>
+          <p>Available to buy: <strong>{this.props.availabletobuy} </strong>  
+          {this.props.availabletobuy === 'Y' && <a href="http://old.stockport.gov.uk/sia/buynoworderaprint/" target="_blank">Order a print</a>}
+          </p>
+          
+          
           <button
             className="ShowBig"
             onClick={() => {
