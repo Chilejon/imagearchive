@@ -37,7 +37,7 @@ class Searchbox extends Component {
     return (
       this.state.areas.length > 0 && (
         <fragment>
-          <h1 className="titleText">Stockport <span className="SIAHeading">Image</span> Archive</h1>
+          <h1 className="titleText">Stockport Image Archive</h1>
           <form onSubmit={this.searchTitle} className="textCentered">
             <table>
               <tr><th>Keywork search</th><th>Search depth</th><th>Locations</th><th></th><th></th></tr>
@@ -107,7 +107,7 @@ class Searchbox extends Component {
               </tr>
             </table>
           </form>
-          <h2 className="textCentered">{this.props.NoResults}</h2>
+          <h2 className="titleText">{this.props.NoResults}</h2>
         </fragment>
       )
     );

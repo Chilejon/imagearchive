@@ -96,7 +96,7 @@ class AlbumResults extends Component {
         {/* {(images === '') ? '' : } */}
         {images !== '' && (
 
-          <section className="box searchResults">
+          <section className="box searchResultsAll">
 
             <h2>{this.props.title}</h2>
             {images}

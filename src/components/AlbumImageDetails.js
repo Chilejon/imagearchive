@@ -19,9 +19,8 @@ class AlbumImageDetails extends Component {
           this.props.photograph
         );
       }}>
-        <img src={imgSrcConfirmed} text={this.props.caption} width="100"
-        />
-        <p className="smallText">{this.props.caption}</p>
+        <img src={imgSrcConfirmed} text={this.props.caption} width="100" data-toggle="tooltip" title={this.props.caption.trim()} />
+        <p className="block-with-text" data-toggle="tooltip" title={this.props.caption.trim()}>{this.props.caption}</p>
       </div>
     );
   }

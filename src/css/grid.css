@@ -40,6 +40,7 @@ body {
        "searchBox"
        "searchString"
        "searchResults"
+       "searchResultsAll"
        "fullDetails"
        "albums"
     }
@@ -54,6 +55,7 @@ body {
           "searchBox"
           "searchString"
           "searchResults"
+          "searchResultsAll"
           "fullDetails"
           "albums";
       }
@@ -62,7 +64,7 @@ body {
       .titleText {
         text-align: center;
         font-weight: bold;
-        color: black;
+        color: #333333;
       }
 
       .textCentered {
@@ -80,6 +82,7 @@ body {
              "searchBox"
               "searchString"
               "searchResults"
+              "searchResultsAll"
               "fullDetails"
               "albums";
               max-width: 1366px;
@@ -129,6 +132,13 @@ body {
     padding-bottom: 40px;
   }
 
+  .searchResultsAll {
+    background-color: #ccc;
+    color: #444;
+    padding-bottom: 120px;
+  
+  }
+
   .bigImageBorder img {
     margin: 50px 0px 50px -50px;
     border-radius: 20px;
@@ -157,21 +167,20 @@ body {
     cursor: pointer;
   }
 
+  .searchResultsAll {
+    margin-top:10px;
+    display: grid;
+    grid-gap: 2%;
+    grid-template-columns: repeat(8, 10%);
+    cursor: pointer;
+  }
+
   .fullDetails {
     margin-top: 10px;
     display:grid;
     grid-gap: 2%;
     grid-template-columns: repeat(2, 45%);
   }
-
-  /* .fullDetails {
-    grid-area: fullDetails;
-    display: flex;
-    flex-direction: row;
-    margin-top:10px;
-  } */
-
-
 
   .albums {
     margin-top:10px;
@@ -182,6 +191,69 @@ body {
   }
 
   table, th{
-    text-align: left;
-    color: black;
-  }
+    text-align: center;
+        color: #333333;
+        font-size: 14pt;
+ }
+
+ .truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 300px;
+    height: 30px;
+}
+
+.truncate + .tooltip > .tooltip-inner {
+  background-color: #73AD21; 
+  color: #FFFFFF; 
+  border: 1px solid green; 
+  padding: 15px;
+  font-size: 20px;
+}
+
+/* styles for '...' */ 
+.block-with-text {
+  /* hide text if it more than N lines  */
+  overflow: hidden;
+  /* for set '...' in absolute position */
+  position: relative; 
+  /* use this value to count block height */
+  line-height: 1.2em;
+  /* max-height = line-height (1.2) * lines max number (3) */
+  max-height: 2.6em; 
+  /* fix problem when last visible word doesn't adjoin right side  */
+  text-align: left;  
+  /* place for '...' */
+  margin-right: -1em;
+  padding-right: 1em;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+/* create the ... */
+.block-with-text:before {
+  /* points in the end */
+  content: '...';
+  /* absolute position */
+  position: absolute;
+  /* set position to right bottom corner of block */
+  right: 0;
+  bottom: 0;
+}
+/* hide ... if we have text, which is less than or equal to max lines */
+.block-with-text:after {
+  /* points in the end */
+  content: '';
+  /* absolute position */
+  position: absolute;
+  /* set position to right bottom corner of text */
+  right: 0;
+  /* set width and height */
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  /* bg color = bg color under block */
+  background: #444444;
+}

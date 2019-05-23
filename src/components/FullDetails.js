@@ -25,7 +25,7 @@ class FullDetails extends Component {
     var nextImage
     if(this.props.nextImage !== undefined)
     {
-      nextImage = <button className="ShowBig"
+      nextImage = <button className="ShowBigRight"
       onClick={() => {
         this.props.nextImage(
           this.props.AccessionNo
@@ -73,6 +73,7 @@ class FullDetails extends Component {
           
           <h2>{this.props.title}</h2>
           <h3>{this.props.description}</h3>
+          
           <p>Accession no: <strong>{this.props.AccessionNo}</strong></p>
           <p>Area: <strong>{areaText}</strong> </p>
           <p>Class: <strong>{this.props.classno}</strong></p>

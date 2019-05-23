@@ -70,7 +70,7 @@ class App extends Component {
   }
 
   search(searchTerm, area, searchWhat) {
-    if (searchTerm !== "" && searchTerm.trim().length > 1) 
+    if (searchTerm !== "" && searchTerm.trim().length > 2) 
     {    
     this.setState({
       Images: [],
@@ -145,9 +145,9 @@ class App extends Component {
     }
     else {
       var NoResultsMessage
-      if (searchTerm.trim().length < 2)
+      if (searchTerm.trim().length < 3)
       {
-        NoResultsMessage = ""
+        NoResultsMessage = "Not enough criteria to search on. Enter more than: " + searchTerm
       }
 
 

@@ -22,7 +22,13 @@ class AlbumDetails extends Component {
           );
         }}
         />
-        {this.props.title}
+        <span onClick={() => {
+          this.props.showAlbums(
+            this.props.albumidno,
+            this.props.title
+          );
+        }}>{this.props.title}
+        </span>
       </section>
     );
   }

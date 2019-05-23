@@ -49,7 +49,7 @@ class ImageDetails extends Component {
         >
           Show more
         </button> */}
-        <p>{this.props.title}</p>
+        <p className="block-with-text" data-toggle="tooltip" data-placement="bottom" title={this.props.title.trim()}>{this.props.title.trim()}</p>
       </div>
     );
   }
