@@ -20,7 +20,7 @@ class AlbumImageDetails extends Component {
         );
       }}>
         <img src={imgSrcConfirmed} text={this.props.caption} width="100" data-toggle="tooltip" title={this.props.caption.trim()} />
-        <p className="block-with-text" data-toggle="tooltip" title={this.props.caption.trim()}>{this.props.caption}</p>
+        <p className="twoLines" data-toggle="tooltip" title={this.props.caption.trim()}>{this.props.caption}</p>
       </div>
     );
   }

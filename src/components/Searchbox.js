@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import loadingTransp from "./../images/loadingTransp.gif";
 import areas from "../data/areas.json";
 
-const getAreas = "https://interactive.stockport.gov.uk/siarestapi/v1/Getareas";
-
 class Searchbox extends Component {
   constructor(props, context) {
     super(props, context);
@@ -15,25 +13,11 @@ class Searchbox extends Component {
     this.onChange = this.onChange.bind(this)
   }
 
-  componentDidMount() {
-    // if (this.state.areas.length === 0) {
-    //   fetch(getAreas)
-    //     .then(response => response.json())
-    //     .then(json => {
-    //       //console.log(json);
-    //       this.setState({
-    //         areas: json
-    //       });
-    //     });
-    // }
-  }
-
   onChange(event) {
     this.setState({ input: event.target.value })
   }
 
   render() {
-    //console.log(this.state.areas);
     return (
       this.state.areas.length > 0 && (
         <fragment>
