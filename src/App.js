@@ -120,12 +120,13 @@ class App extends Component {
     }
 
     //alert(apiLink);
+    var NoResultsMessage
     //console.log(apiLink)
     fetch(apiLink)
       .then(response => response.json())
       .then(json => {
-        //alert(json);
-        if (json !== null) {
+        console.log(json)
+        if (json !== null || json.length !== undefined ) {
           this.setState({
             Images: json,
             searchTerm: searchTerm,
@@ -149,9 +150,6 @@ class App extends Component {
       {
         NoResultsMessage = "Not enough criteria to search on. Enter more than: " + searchTerm
       }
-
-
-
       this.setState({
         Images: [],
         searchTerm: searchTerm,
@@ -183,11 +181,11 @@ class App extends Component {
     var apiLink = "";
     apiLink = GetPhotosByClassNo + classno;
     //temp while not cors working
-    this.setState({
-      Images: sd71,
-      searchTerm: classno,
-      isLoading: false
-    })
+    //this.setState({
+    //  Images: sd71,
+    //  searchTerm: classno,
+    //  isLoading: false
+    //})
     //alert(apiLink)
     fetch(apiLink)
       .then(response => response.json())

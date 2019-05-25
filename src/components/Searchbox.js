@@ -55,7 +55,7 @@ class Searchbox extends Component {
                   </select>
 
                 </td>
-                <td>
+                <td style={{minWidth:80}}>
                   {this.props.isLoading ? (
                     <img src={loadingTransp} alt={"loading"} width="35" height="35" />
                   ) : (

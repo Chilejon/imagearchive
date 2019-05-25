@@ -132,6 +132,10 @@ body {
     padding-bottom: 40px;
   }
 
+  .searchResults img {
+    border-radius: 10px;
+  }
+
   .searchResultsAll {
     background-color: #ccc;
     color: #444;
